@@ -1,5 +1,5 @@
 from game_loop import game_loop
-from scores.manage_scores import player_id
+from scores.manage_scores import player_id, display_entire_record, display_user_record
 from words.manage_words import get_guess_word, display_user_word, add_word
 
 def display_menu():
@@ -12,6 +12,8 @@ def display_menu():
     return menu_choice
  
 def main():
+    scores_file = './scores/scores_file.json'
+
     game_run = True
     while game_run:
 
@@ -28,7 +30,21 @@ def main():
                 life_count = 7
                 print(f"mot à deviner : {' '.join(user_word_format)}")
                 game_loop(life_count, guess_word, user_word_format, scores_file, player) 
-
+            case "3":
+                sub_menu = input(" === HISTORIQUE === \n"
+                                "1. Tout l'historique \n"
+                                "2. L'historique d'un joueur \n"
+                                "3. Retour \n")
+                match sub_menu:
+                    case "1":
+                        display_entire_record(scores_file)
+                    case "2":
+                        player = input("L'historique de quel joueur voulez-vous voir ?").lower().strip()
+                        display_user_record(scores_file, player)
+                    case "3":
+                        main()
+                    case _:
+                        print("cette commande n'est pas reconnue")
             case "4":
                 add_word()
 
