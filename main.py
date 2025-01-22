@@ -1,5 +1,5 @@
 from game_loop import game_loop
-from scores.manage_scores import player_id, display_entire_record, display_user_record
+from scores.manage_scores import player_id, display_entire_record, display_user_record, erase_all_record, reset_user_record
 from words.manage_words import get_guess_word, display_user_word, add_word
 
 def display_menu():
@@ -34,7 +34,9 @@ def main():
                 sub_menu = input(" === HISTORIQUE === \n"
                                 "1. Tout l'historique \n"
                                 "2. L'historique d'un joueur \n"
-                                "3. Retour \n")
+                                "3. Supprimer tout l'historique \n"
+                                "4. Supprimer l'historique d'un joueur \n"
+                                "5. Retour \n")
                 match sub_menu:
                     case "1":
                         display_entire_record(scores_file)
@@ -42,7 +44,16 @@ def main():
                         player = input("L'historique de quel joueur voulez-vous voir ?").lower().strip()
                         display_user_record(scores_file, player)
                     case "3":
-                        main()
+                        choice = input("Êtes-vous sûr de vouloir supprimer tout l'historique ? o/n").lower()
+                        if choice == "o":
+                            erase_all_record(scores_file)
+                        else:
+                            continue
+                    case "4":
+                        player = input("L'historique de quel joueur voulez-vous voir ?").lower().strip()
+                        reset_user_record(scores_file, player)
+                    case "5":
+                        continue
                     case _:
                         print("cette commande n'est pas reconnue")
             case "4":
@@ -53,7 +64,6 @@ def main():
                 game_run = False
             case _:
                 print("La commande n'a pas été reconnue")
-
 
 main()
 

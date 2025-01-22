@@ -45,3 +45,14 @@ def display_user_word(guess_word):
                 user_word_format.append(user_word)
 
     return user_word_format
+
+def input_guess_letter(letters, user_word_format, life_count):
+    guess_letter = unidecode(input("Veuillez entrer une lettre : ").lower()[0:1])
+    if guess_letter in letters:
+        print(f"\033[H\033[2J", end="")
+        print(' '.join(user_word_format))
+        print(f"lettre(s) déjà proposée(s) {' '.join(letters)}")
+        print(f"Vous avez déjà essayé {guess_letter}")
+        print(f"il vous reste {life_count} vies")
+        return input_guess_letter(letters, user_word_format, life_count)
+    return guess_letter
