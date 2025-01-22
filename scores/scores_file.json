@@ -1,0 +1,37 @@
+{
+    "florence": {
+        "points": 3,
+        "victoires": 4,
+        "defaites": 1
+    },
+    "adeline": {
+        "points": 4,
+        "victoires": 5,
+        "defaites": 1
+    },
+    "test": {
+        "points": 0,
+        "victoires": 1,
+        "defaites": 3
+    },
+    "thibault": {
+        "points": 1,
+        "victoires": 1,
+        "defaites": 0
+    },
+    "ryhad": {
+        "points": 1,
+        "victoires": 1,
+        "defaites": 0
+    },
+    "baba": {
+        "points": 1,
+        "victoires": 1,
+        "defaites": 0
+    },
+    "vanessa": {
+        "points": 1,
+        "victoires": 1,
+        "defaites": 0
+    }
+}
