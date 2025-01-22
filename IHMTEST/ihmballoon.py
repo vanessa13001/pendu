@@ -1,0 +1,65 @@
+import pygame
+
+
+pygame.init()
+
+res = (640, 480)
+
+"""
+# Commentaires sur les événements
+
+KEYDOWN : Touche du clavier enfoncée - #event.key - événement propre à chaque touche du clavier
+KEYUP : Touche du clavier relâchée - #event.key
+MOUSEBUTTONDOWN : Bouton de la souris appuyé - #event.pos (tuple de deux valeurs au moment du clic de la souris)
+MOUSEBUTTONUP : Bouton de la souris relâché - idem que down, et event.button (qui prendra une valeur différente selon le bouton appuyé)
+MOUSEMOTION : Mouvement de la souris
+"""
+
+"""
+Dictionnaire pygame.key.get_pressed()
+1 pour appuyé
+0 pour relaché
+"""
+
+# Paramètre de la fenêtre, retourne aussi un objet surface
+screen = pygame.display.set_mode(res)
+
+# Chargement de l'image
+image = pygame.image.load('2.png').convert()
+
+# Position initiale de l'image
+x = 0
+y = 0
+
+clock = pygame.time.Clock()
+
+running = True
+
+while running:
+    # Remplir l'écran avec une couleur noire avant de redessiner l'image
+    screen.fill((0, 0, 0))  # Fond noir
+
+    # Gestion des événements
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False  # Si la fenêtre est fermée, on arrête la boucle
+
+    # Vérifier si une touche a été enfoncée
+    pressed = pygame.key.get_pressed()
+    if pressed[pygame.K_LEFT]:
+        x -= 1  # Déplacer l'image à gauche
+    if pressed[pygame.K_RIGHT]:
+        x += 1  # Déplacer l'image à droite
+    if pressed[pygame.K_UP]:
+        y -= 1  # Déplacer l'image vers le haut
+    if pressed[pygame.K_DOWN]:
+        y += 1  # Déplacer l'image vers le bas
+
+    # Affichage de l'image à la nouvelle position (x, y)
+    screen.blit(image, (x, y))
+
+    # Mise à jour de l'affichage
+    pygame.display.flip()
+    clock.tick(60) #60frames par secondes
+
+pygame.quit()
