@@ -139,7 +139,7 @@ def game_loop(fichier_scores, joueur, life_count, guess_word, user_word_format):
                 scores[joueur_normalise] = {"points": 0, "victoires": 0, "defaites": 0, "defaites_consecutives": 0}  # Création d'un profil joueur si nécessaire
 
             # Incrémente les points et les victoires
-            scores[joueur_normalise]["points"] += 1  # Ajouter un point pour la victoire
+            scores[joueur_normalise]["points"] += 1  # Ajouter un point au joueur existant
             scores[joueur_normalise]["victoires"] += 1  # Incrémenter les victoires
             scores[joueur_normalise]["defaites_consecutives"] = 0  # Réinitialiser les défaites consécutives
 
