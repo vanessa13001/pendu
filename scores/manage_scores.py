@@ -29,3 +29,30 @@ def save_scores(scores_file, scores):
 
 
 '''End Florence function'''
+
+
+def display_entire_record(scores_file):
+    with open(scores_file, "r", encoding="UTF-8") as file:
+        record = json.load(file)
+    
+    for player in record:
+        points = record[player]['points']
+        victory = record[player]['victoires']
+        defeat = record[player]['defaites']
+        player_record= f"{player.upper()} \n   VICTOIRES : {victory} \n   DEFAITES : {defeat} \n   POINTS : {points}"  
+        print(player_record)
+        print("- - - - - - - - -")
+
+def display_user_record(scores_file, player):
+    with open(scores_file, "r", encoding="UTF-8") as file:
+        record = json.load(file)
+    
+    if player in record:
+        points = record[player]['points']
+        victory = record[player]['victoires']
+        defeat = record[player]['defaites']
+        player_record= f"{player.upper()} \n   VICTOIRES : {victory} \n   DEFAITES : {defeat} \n   POINTS : {points}"  
+        print(player_record)
+
+    else:
+        print(f"Le joueur {player} n'existe pas")
