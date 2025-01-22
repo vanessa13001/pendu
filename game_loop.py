@@ -1,5 +1,6 @@
 from unidecode import unidecode
 from scores.manage_scores import load_scores, save_scores
+from words.manage_words import input_guess_letter
 
 def game_loop(life_count, guess_word,user_word_format, scores_file, player):
 
@@ -7,8 +8,13 @@ def game_loop(life_count, guess_word,user_word_format, scores_file, player):
     scores = load_scores('./scores/scores_file.json')
     
     while life_count >= 0 :
-        guess_letter = unidecode(input("Veuillez entrer une lettre : ").lower()[0:1])
-        letters.append(guess_letter.upper())
+        # guess_letter = unidecode(input("Veuillez entrer une lettre : ").lower()[0:1])
+        # if guess_letter in letters:
+        #     print(f"Vous avez déjà essayé {guess_letter}")
+        #     guess_letter = unidecode(input("Veuillez entrer une lettre : ").lower()[0:1])
+        guess_letter = input_guess_letter(letters, user_word_format, life_count)
+
+        letters.append(guess_letter)
 
         for index in range(len(guess_word)):
             if guess_letter == guess_word[index]:

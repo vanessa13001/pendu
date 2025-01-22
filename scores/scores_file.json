@@ -5,8 +5,8 @@
         "defaites": 1
     },
     "adeline": {
-        "points": 4,
-        "victoires": 5,
+        "points": 5,
+        "victoires": 6,
         "defaites": 1
     },
     "test": {
@@ -30,11 +30,6 @@
         "defaites": 0
     },
     "vanessa": {
-        "points": 1,
-        "victoires": 1,
-        "defaites": 0
-    },
-    "adline": {
         "points": 1,
         "victoires": 1,
         "defaites": 0
