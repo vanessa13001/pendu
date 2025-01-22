@@ -1,5 +1,6 @@
 import secrets
 from unidecode import unidecode
+import json
 
 def display_menu():
     menu_choice = input(" === MENU === \n"
@@ -18,26 +19,23 @@ def player_id():
 
     # return user_name
 
-def add_word(): #TODO check if word already exist or not
+def add_word():
     new_word = input("Veuillez entrer un nouveau mot : ").strip().lower()
 
     secret_words = open("words.txt", "r", encoding="UTF-8")
     secret_words_list = secret_words.readlines()
+    secret_words.close()
 
     for index in range(len(secret_words_list)):
         secret_words_list[index] = secret_words_list[index].replace("\n", "")
  
     if new_word in secret_words_list:
-        print("Ce mot existe déjà")
-        secret_words.close()
+        print("Ce mot existe déjà")       
 
     else:
-        secret_words.close()
         secret_words = open("words.txt", "a", encoding="UTF-8")
         secret_words.write("\n"+new_word)
         secret_words.close()
-
-
 
 def game_loop(life_count, guess_word,user_word_format, score):
     letters = []
@@ -71,20 +69,25 @@ def game_loop(life_count, guess_word,user_word_format, score):
     
 def get_guess_word():
      with open("words.txt",'r', encoding="UTF-8") as secret_words:
-                    secret_words_list = secret_words.readlines()
-                    guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().lower()))
+        secret_words_list = secret_words.readlines()
+        guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().lower()))
 
-                    return guess_word
+        return guess_word
      
 def display_user_word(guess_word):
     user_word = "_"
     user_word_format = []
 
     for index in range(len(guess_word)):
-        if guess_word[index] != " ":
-            user_word_format.append(user_word)
-        else:
-            user_word_format.append(" ")
+        match guess_word[index]:
+            case " ":
+                user_word_format.append(" ")
+            case "'":
+                user_word_format.append("'")
+            case "-":
+                user_word_format.append("-")
+            case _:
+                user_word_format.append(user_word)
 
     return user_word_format
 
@@ -99,7 +102,6 @@ def main():
                 guess_word = get_guess_word()
                 user_word_format = display_user_word(guess_word)
                 '''Il y a 7 vies au jeu du pendu'''
-               
                 life_count = 7
                 score = 0
                 print(f"mot à deviner : {' '.join(user_word_format)}")
@@ -107,11 +109,10 @@ def main():
 
             case "4":
                 add_word()
-                main()
 
             case "5":
-                game_run = False  
-                exit()
+                game_run = False
+
 
 main()
 
