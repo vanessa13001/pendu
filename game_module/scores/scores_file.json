@@ -1,0 +1,57 @@
+{
+    "florence": {
+        "win_streak": 3,
+        "wins": 4,
+        "losses": 1
+    },
+    "adeline": {
+        "win_streak": 5,
+        "wins": 7,
+        "losses": 2
+    },
+    "test": {
+        "win_streak": 0,
+        "wins": 1,
+        "losses": 3
+    },
+    "thibault": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "ryhad": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "baba": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "vanessa": {
+        "win_streak": 0,
+        "wins": 2,
+        "losses": 1
+    },
+    "jolyne": {
+        "win_streak": 2,
+        "wins": 4,
+        "losses": 1
+    },
+    "jolynecou": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "jo": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
+    },
+    "Pomme": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    }
+}
