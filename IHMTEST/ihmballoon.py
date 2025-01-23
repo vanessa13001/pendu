@@ -7,7 +7,7 @@ res = (640, 480)
 
 """
 # Commentaires sur les événements
-
+Quit : fermeture ou alt+F4
 KEYDOWN : Touche du clavier enfoncée - #event.key - événement propre à chaque touche du clavier
 KEYUP : Touche du clavier relâchée - #event.key
 MOUSEBUTTONDOWN : Bouton de la souris appuyé - #event.pos (tuple de deux valeurs au moment du clic de la souris)
@@ -21,11 +21,26 @@ Dictionnaire pygame.key.get_pressed()
 0 pour relaché
 """
 
+"""
+Attributs : - points de vie
+                - compétences
+                - Armes
+Méthodes :  - se déplacer
+                    - Etre bloquer
+
+couper son jeu en différentes scènes :(chaque scène est un objet) - chaque scène auront des caractèristiques communes et propres à chacunes d'elles.
+- Menu
+- Niveau
+- Boss
+
+Ex: une class scène et de la faire hériter à chacune des scène (menu, level 1) qu'on souhaite avoir
+"""
+
 # Paramètre de la fenêtre, retourne aussi un objet surface
 screen = pygame.display.set_mode(res)
 
 # Chargement de l'image
-image = pygame.image.load('2.png').convert()
+image = pygame.image.load('3.png').convert()
 
 # Position initiale de l'image
 x = 0
