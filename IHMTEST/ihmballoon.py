@@ -25,7 +25,7 @@ Dictionnaire pygame.key.get_pressed()
 screen = pygame.display.set_mode(res)
 
 # Chargement de l'image
-image = pygame.image.load('2.png').convert()
+image = pygame.image.load('./IHMTEST/2.png').convert()
 
 # Position initiale de l'image
 x = 0
