@@ -29,7 +29,7 @@ Hangman-Game/
  * settings.py             # Configuration file containing resources and settings
 + README.md                
 
-## Features  
+### Features  
 The game offers several features:  
 
 + **Main Menu**:A menu with options to start a new game, view scores, or quit the game.
@@ -37,6 +37,22 @@ The game offers several features:
 + **Scores**: Ability to view and delete player scores.
 + **Background Music**:Background music for both the main menu and during gameplay.
 + **Visual Effects**: Backgrounds, hanging character, dialogues, and other graphical elements to make the game more interactive.
+
+## How it works 
+1. **Main Menu**
+   When the game starts, a main menu appears with several buttons:
+   + **Play**: Starts a new Hangman game.
+   + **Score**s: Displays the saved player scores.  
+   + **Quit**: Exits the game.
+     
+3. **Hangman Game**
+   During the game, the player must guess a word by suggesting letters. Each wrong guess results in the hanging character moving forward until the player runs out of lives      or successfully guesses the word.  
+   The background and the hanging character change based on the number of remaining lives.  
+5. **SCore**
+   The player can view scores, delete a player, or reset the scores from the score menu.
+   
+
+
 
 
 
