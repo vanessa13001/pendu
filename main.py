@@ -10,7 +10,7 @@ def display_menu():
           "4. Ajouter un mot \n"
           "5. Quitter le jeu \n").strip()
     return menu_choice
- 
+
 def main():
     scores_file = './scores/scores_file.json'
 

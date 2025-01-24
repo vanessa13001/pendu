@@ -66,11 +66,13 @@ def reset_user_record(scores_file, player):
 
     if player in record:
         del record[player]
+        with open(scores_file, "w") as file:
+            json.dump(record, file, indent=4)
+            print(f"l'historique de {player} a été supprimé avec succès")
+            
     else:
         print(f"Il n'est pas possible de supprimer l'historique de {player} car ce joueur n'existe pas")
 
-    with open(scores_file, "w") as file:
-        json.dump(record, file, indent=4)
-        print(f"l'historique de {player} a été supprimé avec succès")
+    
 
 # def restore_record(scores_file):

@@ -40,11 +40,7 @@ Ex: une class scène et de la faire hériter à chacune des scène (menu, level 
 screen = pygame.display.set_mode(res)
 
 # Chargement de l'image
-<<<<<<< HEAD
-image = pygame.image.load('3.png').convert()
-=======
-image = pygame.image.load('./IHMTEST/2.png').convert()
->>>>>>> f6d1b0f20dbf930c97f077eaf873ba33bd05cf4c
+image = pygame.image.load('./IHMTEST/3.png').convert()
 
 # Position initiale de l'image
 x = 0
