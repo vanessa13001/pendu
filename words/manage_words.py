@@ -4,20 +4,35 @@ import secrets
 def add_word():
     new_word = input("Veuillez entrer un nouveau mot : ").strip().lower()
 
-    secret_words = open("./words/words.txt", "r", encoding="UTF-8")
-    secret_words_list = secret_words.readlines()
-    secret_words.close()
+    special_caracter = ["'", "-", " "]
 
-    for index in range(len(secret_words_list)):
-        secret_words_list[index] = secret_words_list[index].replace("\n", "")
- 
-    if new_word in secret_words_list:
-        print("Ce mot existe déjà")       
+    is_valid = True
+    for caracter in special_caracter:
+        if caracter in new_word:
+            get_index_caracter = new_word.index(caracter)
+            # print(get_index_caracter, caracter)
+            if new_word[(get_index_caracter)+1] in special_caracter:
+                print("ça va exploser")
+                is_valid = False
+    
+    if is_valid:
+        with open("./words/words.txt", "r", encoding="UTF-8") as secret_words:
+            secret_words_list = secret_words.readlines()
 
-    else:
-        secret_words = open("./words/words.txt", "a", encoding="UTF-8")
-        secret_words.write("\n"+new_word)
-        secret_words.close()
+        # secret_words = open("./words/words.txt", "r", encoding="UTF-8")
+        # secret_words_list = secret_words.readlines()
+        # secret_words.close()
+
+        for index in range(len(secret_words_list)):
+            secret_words_list[index] = secret_words_list[index].replace("\n", "")
+
+        if new_word in secret_words_list:
+            print("Ce mot existe déjà")       
+
+        else:
+            secret_words = open("./words/words.txt", "a", encoding="UTF-8")
+            secret_words.write("\n"+new_word)
+            secret_words.close()
 
    
 def get_guess_word():
