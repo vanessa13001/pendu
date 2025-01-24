@@ -94,14 +94,25 @@ def scores_menu_arrows(screen, pages, page, left_hovered, right_hovered):
         right_arrow_rect = pygame.Rect(340,418,44,32)
     else : right_arrow_rect = pygame.Rect(-340,418,44,32)
     return left_arrow_rect, right_arrow_rect
-def game_set_up_menu(screen, username_input):
+def game_set_up_menu(screen, username_input, game_mode):
     screen.blit(graphics['main_dialog_box'],(0,-20))
     dialog_input_rect = settings.pixeled_dialog_text(32,'Votre nom :').get_rect()
     dialog_input_rect.bottomleft = (120,320)
     username_input_rect = settings.pixeled_dialog_text(32,username_input).get_rect()
     username_input_rect.bottomleft = (310,320)
+    easy_button_rect = settings.pixelplay_dialog_text(42,'Facile').get_rect(center=(200,415))
+    hard_button_rect = settings.pixelplay_dialog_text(42,'Difficile').get_rect(center=(440,415))
+    if game_mode == 0:
+        screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['white']),hard_button_rect)
+        screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['dark_gray']), (easy_button_rect[0]-2, easy_button_rect[1]-2))
+        screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['dark_red']), easy_button_rect)
+    if game_mode == 1:
+        screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['white']),easy_button_rect)
+        screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['dark_gray']), (hard_button_rect[0]-2, hard_button_rect[1]-2))
+        screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['dark_red']), hard_button_rect)
     screen.blit(settings.pixeled_dialog_text(32,'Votre nom :'), dialog_input_rect)
     screen.blit(settings.pixeled_dialog_text(32,username_input),username_input_rect)
+    return easy_button_rect, hard_button_rect
 def game_environment(screen,life_count, user_word_format):
     screen.blit(settings.game_background(life_count),(0,0))
     if life_count > 3:
