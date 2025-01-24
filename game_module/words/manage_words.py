@@ -5,14 +5,16 @@ def add_word(new_word, game_mode):
     new_word = str(new_word).strip().lower()
 
     special_caracter = ["'", "-", " "]
-
-    is_valid = True
-    for caracter in special_caracter:
-        if caracter in new_word:
-            get_index_caracter = new_word.index(caracter)
-            if new_word[(get_index_caracter)+1] in special_caracter:
-                is_valid = False
-                return "invalid"
+    try: 
+        is_valid = True
+        for caracter in special_caracter:
+            if caracter in new_word:
+                get_index_caracter = new_word.index(caracter)
+                if new_word[(get_index_caracter)+1] in special_caracter:
+                    is_valid = False
+                    raise Exception()
+    except:
+        return "invalid"
     
     if is_valid:
         if game_mode == 0:

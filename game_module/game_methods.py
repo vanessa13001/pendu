@@ -22,7 +22,7 @@ def input_expression(game_mode,easy_button_rect, hard_button_rect, mouse_positio
                 user_input = user_input[:-1]
                 return game_mode, user_input, ''
             elif len(user_input) <= max_value:
-                if event.unicode in settings.letters:
+                if event.unicode in settings.letters or event.unicode in (" ", "-", "'"):
                     user_input += event.unicode
                     return game_mode, user_input, ''
     return game_mode,user_input, ''
