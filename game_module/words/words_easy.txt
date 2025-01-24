@@ -89,3 +89,6 @@ Texte
 Tyran
 Usuel
 Valse
+banane
+fiji
+lapinou
