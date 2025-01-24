@@ -25,6 +25,7 @@ def main():
         back_button_hovered = False
         left_hovered = False
         right_hovered = False
+        game_mode = 0
         username_input = ''
         player_input = '_'
         page = 0
@@ -110,11 +111,17 @@ def main():
                         else: right_hovered = False
             elif game_set_up_menu:
                 pygame_display.main_menu(screen)
-                pygame_display.game_set_up_menu(screen, username_input)
+                easy_button_rect, hard_button_rect = pygame_display.game_set_up_menu(screen, username_input, game_mode)
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         off()
                         return
+                    if easy_button_rect.collidepoint(mouse_position):
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            game_mode = 0
+                    if hard_button_rect.collidepoint(mouse_position):
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            game_mode = 1
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN and username_input != '':
                             player = username_input
