@@ -54,15 +54,26 @@ The game offers several features:
    setting.py  
    ```  
    The ```settings.py``` file contains resources and configurations used in the game. Here's an overview of its contents:
+   
    1. **Colors**
-      The colors used in the game are defined as RGBA tuples. Here are some examples:  
+      The colors used in the game are defined as RGBA tuples. Here are some examples:
+      ```
       color = {  
     'middle_gray' : (71,65,53,255),  
     'dark_gray' : (42,38,31,255),  
     'light_gray' : (119,115,119,255),  
     'dark_red' : (192,0,0,255),  
     'white' : (255,255,255,255),*  
-}  
+
+      }   
+   ```
+   2.**Fonts**
+      Fonts are loaded from the ```pygame_assets/font/ directory```. Here's an example of how a font is defined:
+      def pixeled_font(font_size):  
+    return pygame.font.Font(font_directory+'Pixeled English Font.ttf', int(font_size))
+
+
+      
 
    
    
