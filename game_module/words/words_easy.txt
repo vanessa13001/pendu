@@ -92,3 +92,4 @@ Valse
 banane
 fiji
 lapinou
+lapin

@@ -1,27 +1,5 @@
-"""
-print settings to generate calculator interface with special
-characters and ansi escape sequencies
-"""
-board = {
-    "vertical" : "║",
-    "horizontal" : "═",
-    "horizontal_v" : "╦",
-    "horizontal_^" : "╩",
-    "vertical_<" : "╣",
-    "vertical_>" : "╠",
-
-    "angle_tl" : "╔",
-    "angle_tr" : "╗",
-    "angle_bl" : "╚",
-    "angle_br" : "╝",
-
-    "light_shade" : "░",
-    "medium_shade" : "▒",
-    "dark_shade" : "▓",
-    "full_block" : "█",
-    "half_block_v" : "▄",
-    "half_clock_^": "▀",
-}
+import string
+upper_letters = string.ascii_uppercase
 cursor = {
     "save" : "\033[s",
     "load" : "\033[u",
