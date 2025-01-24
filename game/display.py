@@ -1,4 +1,4 @@
-from game_module.__settings__ import cursor
+from game.__settings__ import cursor
 '''
     clear entire terminal from position 0,0
 '''

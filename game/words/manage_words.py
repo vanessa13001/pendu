@@ -1,5 +1,24 @@
 from unidecode import unidecode
 import secrets
+from ..__settings__ import EASY_WORDS_PATH, HARD_WORDS_PATH
+
+
+def game_words(game_mode):
+    guess_word = get_guess_word(game_mode)
+    user_word_format = display_user_word(guess_word)
+    return guess_word, user_word_format
+
+
+def check_letter_loop(player_input, guess_word, letters_played, life_count, user_word_format):
+    if player_input not in guess_word and player_input not in letters_played:
+        life_count-=1
+        letters_played.append(player_input)
+    else:
+        for index in range(len(guess_word)):
+            if player_input == guess_word[index]:
+                user_word_format[index] = guess_word[index]
+
+    return life_count, letters_played
 
 def add_word(new_word, game_mode):
     new_word = str(new_word).strip().lower()
@@ -18,9 +37,9 @@ def add_word(new_word, game_mode):
     
     if is_valid:
         if game_mode == 0:
-            secret_words = open("game_module/words/words_easy.txt", "r", encoding="UTF-8")
+            secret_words = open(EASY_WORDS_PATH, "r", encoding="UTF-8")
         else :
-            secret_words = open("game_module/words/words_hard.txt", "r", encoding="UTF-8")
+            secret_words = open(HARD_WORDS_PATH, "r", encoding="UTF-8")
         
         secret_words_list = secret_words.readlines()
         secret_words.close()
@@ -32,9 +51,9 @@ def add_word(new_word, game_mode):
         
         else:
             if game_mode == 0:
-                secret_words = open("game_module/words/words_easy.txt", "a", encoding="UTF-8")
+                secret_words = open(EASY_WORDS_PATH, "a", encoding="UTF-8")
             else:
-                secret_words = open("game_module/words/words_hard.txt", "a", encoding="UTF-8")
+                secret_words = open(HARD_WORDS_PATH, "a", encoding="UTF-8")
 
             secret_words.write("\n"+new_word)
             secret_words.close()
@@ -42,11 +61,11 @@ def add_word(new_word, game_mode):
 
 def get_guess_word(game_mode):
     if game_mode == 0:
-        with open("game_module/words/words_easy.txt",'r', encoding="UTF-8") as secret_words:
+        with open(EASY_WORDS_PATH,'r', encoding="UTF-8") as secret_words:
             secret_words_list = secret_words.readlines()
             guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().upper()))
     else:
-        with open("game_module/words/words_hard.txt",'r', encoding="UTF-8") as secret_words:
+        with open(HARD_WORDS_PATH,'r', encoding="UTF-8") as secret_words:
             secret_words_list = secret_words.readlines()
             guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().upper()))
     return guess_word
