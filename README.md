@@ -50,6 +50,8 @@ The game offers several features:
    The background and the hanging character change based on the number of remaining lives.  
 5. **Score**
    The player can view scores, delete a player, or reset the scores from the score menu.
+
+***  
    
 ## Project Settings  
 
