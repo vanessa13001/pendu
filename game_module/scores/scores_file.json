@@ -25,9 +25,9 @@
         "losses": 0
     },
     "baba": {
-        "win_streak": 1,
+        "win_streak": 0,
         "wins": 1,
-        "losses": 0
+        "losses": 1
     },
     "vanessa": {
         "win_streak": 0,
@@ -88,5 +88,15 @@
         "win_streak": 1,
         "wins": 1,
         "losses": 0
+    },
+    "hallo": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "hallotest": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
     }
 }

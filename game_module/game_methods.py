@@ -19,6 +19,7 @@ def update_scores(life_count, user_word_format, player):
     save_scores(scores)
 
 def game_loop(player_input, guess_word, letters_played, life_count, user_word_format):
+
     if player_input not in guess_word and player_input not in letters_played:
         life_count-=1
     for index in range(len(guess_word)):
@@ -27,3 +28,5 @@ def game_loop(player_input, guess_word, letters_played, life_count, user_word_fo
     if player_input not in letters_played and player_input not in guess_word:
         letters_played.append(player_input)
     player_input = '_'
+
+    return life_count
