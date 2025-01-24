@@ -12,6 +12,13 @@ def pygame_init():
 def pygame_mixer(music_name):
     pygame.mixer.music.load(sfx[music_name])
     pygame.mixer.music.play(-1,0,3)
+def menu_button(screen, button_id, button_x, button_y, font_size=48, hovered = False):
+    button_rect = settings.pixeled_dialog_text(font_size,button_id)\
+        .get_rect(bottomleft=(button_x,button_y))
+    if hovered:
+        screen.blit(settings.pixeled_dialog_text(font_size,button_id,color['dark_red']), button_rect)
+    else: screen.blit(settings.pixeled_dialog_text(font_size,button_id,color['white']), button_rect)
+    return button_rect
 def main_menu(screen):
     screen.blit(graphics['main_background_clouds'],(0,0))
     screen.blit(graphics['main_middleground_village'],(0,0))
@@ -21,19 +28,14 @@ def main_menu(screen):
                 (112,'Le Pendu',color['dark_gray']), (main_title_rect[0]+2,main_title_rect[1]+2))
     screen.blit(settings.pixeled_dialog_text\
                 (112,'Le Pendu',color['dark_red']), main_title_rect)
-def menu_button(screen, button_id, button_x, button_y, font_size=48, hovered = False):
-    button_rect = settings.pixeled_dialog_text(font_size,button_id)\
-        .get_rect(bottomleft=(button_x,button_y))
-    if hovered:
-        screen.blit(settings.pixeled_dialog_text(font_size,button_id,color['dark_red']), button_rect)
-    else: screen.blit(settings.pixeled_dialog_text(font_size,button_id,color['white']), button_rect)
-    return button_rect
-def display_main_menu(screen, start_button_hovered, score_button_hovered, quit_button_hovered):
-    start_button_rect = menu_button(screen,'Jouer',350,260,48,start_button_hovered)
-    score_button_rect = menu_button(screen,'Score',350,330,48,score_button_hovered)
-    quit_button_rect = menu_button(screen,'Quitter',350,400,48,quit_button_hovered)
+def main_menu_buttons(screen, start_button_hovered, score_button_hovered, words_button_hovered, quit_button_hovered):
+    start_button_rect = menu_button(screen,'Jouer',350,250,48,start_button_hovered)
+    score_button_rect = menu_button(screen,'Score',350,315,48,score_button_hovered)
+    words_button_rect = menu_button(screen,'Mots',350,380,48,words_button_hovered)
+    quit_button_rect = menu_button(screen,'Quitter',350,445,48,quit_button_hovered)
     menu_buttons = {"start" : start_button_rect,
                     "score" : score_button_rect,
+                    "words" : words_button_rect,
                     "quit" : quit_button_rect}
     return menu_buttons
 def get_scores_menu_pages():
@@ -94,16 +96,22 @@ def scores_menu_arrows(screen, pages, page, left_hovered, right_hovered):
         right_arrow_rect = pygame.Rect(340,418,44,32)
     else : right_arrow_rect = pygame.Rect(-340,418,44,32)
     return left_arrow_rect, right_arrow_rect
-def game_set_up_menu(screen, username_input, game_mode):
+def game_set_up_menu(screen, user_input, game_mode, dialog, is_add_word=None, new_word=None):
     screen.blit(graphics['main_dialog_box'],(0,-20))
-    dialog_input_rect = settings.pixeled_dialog_text(32,'Votre nom :')\
-        .get_rect(bottomleft = (120,320))
-    username_input_rect = settings.pixeled_dialog_text(32,username_input)\
-        .get_rect(bottomleft = (310,320))
+    dialog_input_rect = settings.pixeled_dialog_text(32,dialog)\
+        .get_rect(bottomleft = (120,300))
+    user_input_rect = settings.pixeled_dialog_text(32,user_input)\
+        .get_rect(bottomleft = (310,300))
     easy_button_rect = settings.pixelplay_dialog_text(42,'Facile')\
         .get_rect(center=(200,415))
     hard_button_rect = settings.pixelplay_dialog_text(42,'Difficile')\
         .get_rect(center=(440,415))
+    if new_word != None:
+        add_word_dialog_rect = settings.pixelplay_dialog_text(32,new_word+' a été ajouté').get_rect(center=(320,325))
+    if is_add_word:
+        screen.blit(settings.pixelplay_dialog_text(32,new_word+' a ete ajoute'),add_word_dialog_rect)
+    elif is_add_word == False:
+        screen.blit(settings.pixelplay_dialog_text(32,new_word+' existe deja'),add_word_dialog_rect)
     if game_mode == 0:
         screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['white']),hard_button_rect)
         screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['dark_gray']), (easy_button_rect[0]-2, easy_button_rect[1]-2))
@@ -112,8 +120,8 @@ def game_set_up_menu(screen, username_input, game_mode):
         screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['white']),easy_button_rect)
         screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['dark_gray']), (hard_button_rect[0]-2, hard_button_rect[1]-2))
         screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['dark_red']), hard_button_rect)
-    screen.blit(settings.pixeled_dialog_text(32,'Votre nom :'), dialog_input_rect)
-    screen.blit(settings.pixeled_dialog_text(32,username_input),username_input_rect)
+    screen.blit(settings.pixeled_dialog_text(32,dialog), dialog_input_rect)
+    screen.blit(settings.pixeled_dialog_text(32,user_input),user_input_rect)
     return easy_button_rect, hard_button_rect
 def game_environment(screen,life_count, user_word_format):
     screen.blit(settings.game_background(life_count),(0,0))
