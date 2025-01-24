@@ -23,7 +23,18 @@ Hangman-Game/
     * sfx/                 # Contains sound effects
  * main.py                 # Game entry point
  * settings.py             # Configuration file containing resources and settings
-+ README.md                # This file
++ README.md                
+
+## Features  
+The game offers several features:  
+
++ **Main Menu**:A menu with options to start a new game, view scores, or quit the game.
++ **Hangman Game**:The player has to guess a word by entering letters, with a limited number of lives before the character is hanged.
++ **Scores**: Ability to view and delete player scores.
++ **Background Music**:Background music for both the main menu and during gameplay.
++ **Visual Effects**: Backgrounds, hanging character, dialogues, and other graphical elements to make the game more interactive.
+
+
 
 
 
