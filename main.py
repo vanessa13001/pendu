@@ -4,6 +4,7 @@ import game_module.game_methods as game_methods
 import game_module.scores.manage_scores as manage_scores
 import game_module.display as terminal_display
 import __settings__ as settings
+from __settings__ import hovered
 '''
 main
 '''
@@ -16,17 +17,8 @@ def main():
     screen, clock = pygame_display.pygame_init()
     try:
 
-        start_button_hovered = False
-        score_button_hovered = False
-        quit_button_hovered = False
-        reset_button_hovered = False
-        back_button_hovered = False
-        left_hovered = False
-        right_hovered = False
         game_mode = 0
         username_input = ''
-        player_input = '_'
-        page = 0
 
         pygame_display.pygame_mixer('main_menu_soundtrack')
         game_menu = "main_menu"
@@ -37,44 +29,45 @@ def main():
             match game_menu:
                 case "main_menu":
                     pygame_display.main_menu(screen)
-                    start_button_rect = pygame_display.main_menu_button(screen,0,260,start_button_hovered)
-                    score_button_rect = pygame_display.main_menu_button(screen,1,330,score_button_hovered)
-                    quit_button_rect = pygame_display.main_menu_button(screen,2,400,quit_button_hovered)
+                    menu_buttons = pygame_display.display_main_menu(screen, hovered["start_button"], hovered["score_button"], hovered["quit_button"])
 
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             off()
                             return
+                        
                         if event.type == pygame.KEYDOWN:
-                            if event.key == pygame.K_ESCAPE:
-                                off()
-                                return
                             if event.key == pygame.K_RETURN:
                                 game_menu = "set_up_menu"
-                        if start_button_rect.collidepoint(mouse_position):
-                            start_button_hovered = True
+
+                        if menu_buttons["start"].collidepoint(mouse_position):
+                            hovered["start_button"] = True
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 game_menu = "set_up_menu"
-                        else: start_button_hovered = False
-                        if score_button_rect.collidepoint(mouse_position):
-                            score_button_hovered = True
+
+                        else: hovered["start_button"] = False
+                        if menu_buttons["score"].collidepoint(mouse_position):
+                            hovered["score_button"] = True
                             if event.type == pygame.MOUSEBUTTONDOWN:
-                                game_menu = "scores_menu"               
-                        else: score_button_hovered = False
-                        if quit_button_rect.collidepoint(mouse_position):
-                            quit_button_hovered = True
+                                page = 0
+                                game_menu = "scores_menu"
+
+                        else: hovered["score_button"] = False
+                        if menu_buttons["quit"].collidepoint(mouse_position):
+                            hovered["quit_button"] = True
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 off()
                                 return
-                        else: quit_button_hovered = False
+                        else: hovered["quit_button"] = False
                 case "scores_menu":        
                     pages = int(pygame_display.get_scores_menu_pages())
                     if pages == 0:
                         pygame_display.scores_menu_blank(screen)
                     else: 
-                        left_arrow_rect, right_arrow_rect = pygame_display.scores_menu(screen, page, pages,left_hovered, right_hovered)
-                        reset_button_rect = pygame_display.scores_menu_buttons(screen,1,25,reset_button_hovered)
-                    back_button_rect = pygame_display.scores_menu_buttons(screen,2,460,back_button_hovered)
+                        left_arrow_rect, right_arrow_rect = \
+                            pygame_display.scores_menu(screen, page, pages, hovered["left"], hovered["right"])
+                        reset_button_rect = pygame_display.menu_button(screen,'Reinitialiser',25,460,32,hovered["reset_button"])
+                    back_button_rect = pygame_display.menu_button(screen,'Retour',460,465,48,hovered["back_button"])
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             off()
@@ -88,29 +81,30 @@ def main():
                             elif event.key == pygame.K_LEFT:
                                 if page > 0:
                                     page-=1
+
                         if back_button_rect.collidepoint(mouse_position):
-                            back_button_hovered = True
+                            hovered["back_button"] = True
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 game_menu = "main_menu"
-                        else: back_button_hovered = False
+                        else: hovered["back_button"] = False
                         if pages!= 0:
                             if reset_button_rect.collidepoint(mouse_position):
-                                reset_button_hovered = True
+                                hovered["reset_button"] = True
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     manage_scores.erase_all_record()
-                            else: reset_button_hovered = False
+                            else: hovered["reset_button"] = False
                             if left_arrow_rect.collidepoint(mouse_position):
-                                left_hovered = True
+                                hovered["left"] = True
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     if page > 0:
                                         page-=1
-                            else: left_hovered = False
+                            else: hovered["left"] = False
                             if right_arrow_rect.collidepoint(mouse_position):
-                                right_hovered = True
+                                hovered["right"] = True
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     if page < pages-1:
                                         page+=1
-                            else: right_hovered = False
+                            else: hovered["right"] = False
 
                 case "set_up_menu":
                     pygame_display.main_menu(screen)
@@ -131,9 +125,10 @@ def main():
                             if event.key == pygame.K_RETURN and username_input != '':
                                 player = username_input
                                 life_count = 7
+                                player_input = '_'
                                 letters_played = []
                                 guess_word, user_word_format = game_methods.launch_game(game_mode)
-                                pygame_display.pygame_mixer('game_soundtrack')
+                                pygame_display.pygame_mixer('game_soundtrack')         
                                 game_menu = "game_on"
                             elif event.key == pygame.K_BACKSPACE and username_input != '':
                                 username_input = username_input[:-1]
@@ -161,14 +156,7 @@ def main():
                                 pygame_display.pygame_mixer('main_menu_soundtrack')
                                 game_menu = "main_menu"
                             elif event.key == pygame.K_RETURN and player_input != '_':
-                                if player_input not in guess_word and player_input not in letters_played:
-                                    life_count-=1
-                                for index in range(len(guess_word)):
-                                    if player_input == guess_word[index]:
-                                        user_word_format[index] = guess_word[index]
-                                if player_input not in letters_played and player_input not in guess_word:
-                                    letters_played.append(player_input)
-                                player_input = '_'
+                                game_methods.game_loop(player_input, guess_word, letters_played, life_count, user_word_format)
                             elif event.key == pygame.K_BACKSPACE:
                                 player_input = '_'
                             else:

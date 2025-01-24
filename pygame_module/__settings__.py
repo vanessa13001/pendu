@@ -13,10 +13,6 @@ graphics_directory = 'pygame_assets/graphics/'
 font_directory = 'pygame_assets/font/'
 sfx_directory = 'pygame_assets/sfx/'
 
-sfx = {
-    'main_menu_soundtrack' : sfx_directory+'A Singular Perversion.mp3',
-    'game_soundtrack' : sfx_directory+'Lightless Dawn.mp3',
-}
 def pixeled_font(font_size):
     return pygame.font.Font(font_directory+'Pixeled English Font.ttf', int(font_size))
 def pixelplay_font(font_size):
@@ -25,19 +21,9 @@ def pixeled_dialog_text(font_size, dialog='', color='white'):
     return pixeled_font(int(font_size)).render(dialog, True, color)
 def pixelplay_dialog_text(font_size, dialog='', color='white'):
     return pixelplay_font(int(font_size)).render(dialog, True, color)
-fonts = {
-    'main_start_button' : pixeled_font(48).render('Jouer', True, 'white'),
-    'main_start_button_hovered' : pixeled_font(48).render('Jouer', True, color['dark_red']),
-    'main_score_button' : pixeled_font(48).render('Scores', True, 'white'),
-    'main_score_button_hovered' : pixeled_font(48).render('Scores', True, color['dark_red']),
-    'main_quit_button' : pixeled_font(48).render('Quitter', True, 'white'),
-    'main_quit_button_hovered' : pixeled_font(48).render('Quitter', True, color['dark_red']),
-    'scores_delete_button' : pixeled_font(32).render('Supprimer un joueur', True, 'white'),
-    'scores_delete_button_hovered' : pixeled_font(32).render('Supprimer un joueur', True, color['dark_red']),
-    'scores_reset_button' : pixeled_font(32).render('Reinitialiser', True, 'white'),
-    'scores_reset_button_hovered' : pixeled_font(32).render('Reinitialiser', True, color['dark_red']),
-    'scores_back_button' : pixeled_font(48).render('Retour', True, 'white'),
-    'scores_back_button_hovered' : pixeled_font(48).render('Retour', True, color['dark_red']),
+sfx = {
+    'main_menu_soundtrack' : sfx_directory+'A Singular Perversion.mp3',
+    'game_soundtrack' : sfx_directory+'Lightless Dawn.mp3',
 }
 graphics = {
     'icon' : pygame.image.load(graphics_directory+'icon.png'),
