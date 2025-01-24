@@ -15,11 +15,16 @@ def add_word():
         secret_words.write("\n"+new_word)
         secret_words.close()
 
-def get_guess_word():
-    with open("game_module/words/words.txt",'r', encoding="UTF-8") as secret_words:
-        secret_words_list = secret_words.readlines()
-        guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().upper()))
-        return guess_word
+def get_guess_word(game_mode):
+    if game_mode == 0:
+        with open("game_module/words/words_easy.txt",'r', encoding="UTF-8") as secret_words:
+            secret_words_list = secret_words.readlines()
+            guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().upper()))
+    else:
+        with open("game_module/words/words_hard.txt",'r', encoding="UTF-8") as secret_words:
+            secret_words_list = secret_words.readlines()
+            guess_word = list(unidecode(secret_words_list[secrets.randbelow(len(secret_words_list))].strip().upper()))
+    return guess_word
      
 def display_user_word(guess_word):
     user_word = "_"

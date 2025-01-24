@@ -1,8 +1,8 @@
 import game_module.words.manage_words as manage_words
 from game_module.scores.manage_scores import load_scores, save_scores, player_id
 
-def launch_game():
-    guess_word = manage_words.get_guess_word()
+def launch_game(game_mode):
+    guess_word = manage_words.get_guess_word(game_mode)
     user_word_format = manage_words.display_user_word(guess_word)
     return guess_word, user_word_format
 
