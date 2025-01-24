@@ -1,5 +1,31 @@
+import pygame
+import game_module.__settings__ as settings
 import game_module.words.manage_words as manage_words
 from game_module.scores.manage_scores import load_scores, save_scores, player_id
+
+def input_expression(game_mode,easy_button_rect, hard_button_rect, mouse_position, user_input, max_value):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            return game_mode, user_input, 'quit'
+        if easy_button_rect.collidepoint(mouse_position):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                return 0, user_input, ''
+        if hard_button_rect.collidepoint(mouse_position):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                return 1, user_input, ''
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                return game_mode, user_input, False
+            if event.key == pygame.K_RETURN and user_input != '':
+                return game_mode, user_input, True
+            elif event.key == pygame.K_BACKSPACE and user_input != '':
+                user_input = user_input[:-1]
+                return game_mode, user_input, ''
+            elif len(user_input) <= max_value:
+                if event.unicode in settings.letters:
+                    user_input += event.unicode
+                    return game_mode, user_input, ''
+    return game_mode,user_input, ''
 
 def launch_game(game_mode):
     guess_word = manage_words.get_guess_word(game_mode)

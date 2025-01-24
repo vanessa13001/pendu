@@ -35,9 +35,9 @@
         "losses": 1
     },
     "jolyne": {
-        "win_streak": 2,
-        "wins": 8,
-        "losses": 4
+        "win_streak": 0,
+        "wins": 10,
+        "losses": 5
     },
     "jolynecou": {
         "win_streak": 1,
@@ -97,6 +97,11 @@
     "hallotest": {
         "win_streak": 0,
         "wins": 0,
+        "losses": 1
+    },
+    "joly": {
+        "win_streak": 0,
+        "wins": 3,
         "losses": 1
     }
 }
