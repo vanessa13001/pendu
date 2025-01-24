@@ -50,12 +50,15 @@ The game offers several features:
    The background and the hanging character change based on the number of remaining lives.  
 5. **Score**
    The player can view scores, delete a player, or reset the scores from the score menu.
+   
+## Project Settings  
+
    ```  
    setting.py  
    ```  
    The ```settings.py``` file contains resources and configurations used in the game. Here's an overview of its contents:
    
-   1. **Colors**
+1. **Colors**
       The colors used in the game are defined as RGBA tuples. Here are some examples:
       ```
       color = {  
@@ -67,20 +70,21 @@ The game offers several features:
 
       }   
          ```
-   2.   **Fonts**
+2.   **Fonts**
       Fonts are loaded from the ```pygame_assets/font/ directory```. Here's an example of how a font is defined:
    ```
       def pixeled_font(font_size):  
     return pygame.font.Font(font_directory+'Pixeled English Font.ttf', int(font_size))
    ```
-   3.**Sound Effects**
+3. **Sound Effects**
      Sound effects are stored in the ```pygame_assets/sfx/ folder```. Example:
    ```sfx = {
     'main_menu_soundtrack' : sfx_directory+'A Singular Perversion.mp3',
     'game_soundtrack' : sfx_directory+'Lightless Dawn.mp3',
    }
    ```  
-      4. **Graphics**
+
+4. **Graphics**
       Images and backgrounds are stored in the ```pygame_assets/graphics/ folder.```
       Example:
       ```
@@ -97,7 +101,7 @@ The game offers several features:
     'game_middleground_moon' : pygame.image.load(graphics_directory+'game_mg_moon.png'),
       }
      ```
-   5. **Backgrounds and Hangman**  
+5. **Backgrounds and Hangman**  
       The game uses different backgrounds and images of the hanging character that change based on the number of remaining lives.
       For example:
       ```
