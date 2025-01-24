@@ -1,11 +1,10 @@
 import pygame
-import pygame_module.display as pygame_display
-import game_module.game_methods as game_methods
-import game_module.scores.manage_scores as manage_scores
-import game_module.words.manage_words as manage_words
-import game_module.display as terminal_display
-import __settings__ as settings
-from __settings__ import hovered
+import display.display as pygame_display
+import game.manage_input as manage_input
+import game.scores.manage_scores as manage_scores
+import game.words.manage_words as manage_words
+import game.display as terminal_display
+from display.__settings__ import hovered
 '''
 main
 '''
@@ -129,7 +128,7 @@ def main():
                     pygame_display.main_menu(screen)
                     easy_button_rect, hard_button_rect = \
                         pygame_display.game_set_up_menu(screen, user_input, game_mode, 'Votre mot :', is_add_word, new_word)
-                    game_mode, user_input, correct_input = game_methods.input_expression\
+                    game_mode, user_input, correct_input = manage_input.input_expression\
                         (game_mode, easy_button_rect, hard_button_rect, mouse_position, user_input,16)
                     match correct_input:
                         case True:
@@ -145,7 +144,7 @@ def main():
                 case "set_up_menu":
                     pygame_display.main_menu(screen)
                     easy_button_rect, hard_button_rect = pygame_display.game_set_up_menu(screen, user_input, game_mode, 'Votre nom :')
-                    game_mode, user_input, correct_input = game_methods.input_expression\
+                    game_mode, user_input, correct_input = manage_input.input_expression\
                         (game_mode,easy_button_rect, hard_button_rect, mouse_position, user_input,9)
                     match correct_input:
                         case True:
@@ -155,7 +154,7 @@ def main():
                             player_input = '_'
                             letters_played = []
                             life_count = 7
-                            guess_word, user_word_format = game_methods.launch_game(game_mode)
+                            guess_word, user_word_format = manage_words.game_words(game_mode)
                             pygame_display.pygame_mixer('game_soundtrack')         
                             game_menu = "game_on"
                         case False:
@@ -172,7 +171,7 @@ def main():
                     elif '_' not in user_word_format:
                         pygame_display.end_message(screen,1,''.join(guess_word))
                     else: pygame_display.game_interface(screen, ' '.join(user_word_format), player_input, letters_played)
-                    life_count, player_input, letters_played, correct_input = game_methods.input_letter(player, player_input, guess_word, letters_played, life_count, user_word_format)
+                    life_count, player_input, letters_played, correct_input = manage_input.input_letter(player, player_input, guess_word, letters_played, life_count, user_word_format)
                     match correct_input:
                         case True:
                             pygame_display.pygame_mixer('main_menu_soundtrack')
