@@ -150,6 +150,7 @@ def main():
                     match correct_input:
                         case True:
                             player = user_input
+                            correct_input = ''
                             user_input = ''
                             player_input = '_'
                             letters_played = []
@@ -159,6 +160,7 @@ def main():
                             game_menu = "game_on"
                         case False:
                             user_input = ''
+                            correct_input = ''
                             game_menu = "main_menu"
                         case 'quit':
                             off()
@@ -170,30 +172,15 @@ def main():
                     elif '_' not in user_word_format:
                         pygame_display.end_message(screen,1,''.join(guess_word))
                     else: pygame_display.game_interface(screen, ' '.join(user_word_format), player_input, letters_played)
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
+                    life_count, player_input, letters_played, correct_input = game_methods.input_letter(player, player_input, guess_word, letters_played, life_count, user_word_format)
+                    match correct_input:
+                        case True:
+                            pygame_display.pygame_mixer('main_menu_soundtrack')
+                            game_menu = "main_menu"
+                        case 'quit':
                             off()
                             return
-                        if event.type == pygame.KEYDOWN:
-                            if life_count == 0 or '_' not in user_word_format:
-                                if event.key == pygame.K_RETURN:
-                                    game_methods.update_scores(life_count,user_word_format,player)
-                                    pygame_display.pygame_mixer('main_menu_soundtrack')
-                                    game_menu = "main_menu"
-                            elif event.key == pygame.K_ESCAPE:
-                                pygame_display.pygame_mixer('main_menu_soundtrack')
-                                game_menu = "main_menu"
-                            elif event.key == pygame.K_RETURN and player_input != '_':
-                                life_count = game_methods.game_loop(player_input, guess_word, letters_played, life_count, user_word_format)
-                            elif event.key == pygame.K_BACKSPACE:
-                                player_input = '_'
-                            else:
-                                player_input = event.unicode
-                                try:
-                                    player_input = str(player_input).upper()
-                                    if player_input not in settings.upper_letters:
-                                        player_input = '_'
-                                except Exception: player_input = '_'
+
                 case _:
                     off()
                     return

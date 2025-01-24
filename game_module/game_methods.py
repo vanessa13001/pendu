@@ -22,7 +22,7 @@ def input_expression(game_mode,easy_button_rect, hard_button_rect, mouse_positio
                 user_input = user_input[:-1]
                 return game_mode, user_input, ''
             elif len(user_input) <= max_value:
-                if event.unicode in settings.letters:
+                if event.unicode in settings.letters or event.unicode in (" ", "-", "'"):
                     user_input += event.unicode
                     return game_mode, user_input, ''
     return game_mode,user_input, ''
@@ -31,6 +31,33 @@ def launch_game(game_mode):
     guess_word = manage_words.get_guess_word(game_mode)
     user_word_format = manage_words.display_user_word(guess_word)
     return guess_word, user_word_format
+def input_letter(player, player_input, guess_word, letters_played, life_count, user_word_format):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            return life_count, player_input, letters_played, 'quit'
+        if event.type == pygame.KEYDOWN:
+            if life_count == 0 or '_' not in user_word_format:
+                if event.key == pygame.K_RETURN:
+                    update_scores(life_count,user_word_format,player)
+                    return life_count, player_input, letters_played, True
+                    
+            elif event.key == pygame.K_ESCAPE:
+                return life_count, player_input, letters_played, True
+                
+            elif event.key == pygame.K_RETURN and player_input != '_':
+                life_count, letters_played = check_letter_loop(player_input, guess_word, letters_played, life_count, user_word_format)
+                player_input = '_'
+                return life_count, player_input, letters_played, ''
+            elif event.key == pygame.K_BACKSPACE:
+                player_input = '_'
+            else:
+                player_input = event.unicode
+                try:
+                    player_input = str(player_input).upper()
+                    if player_input not in settings.upper_letters:
+                        player_input = '_'
+                except Exception: player_input = '_'
+    return life_count, player_input, letters_played, ''
 
 def update_scores(life_count, user_word_format, player):
     scores = load_scores('game_module/scores/scores_file.json')
@@ -44,7 +71,7 @@ def update_scores(life_count, user_word_format, player):
         scores[player]['win_streak'] +=1
     save_scores(scores)
 
-def game_loop(player_input, guess_word, letters_played, life_count, user_word_format):
+def check_letter_loop(player_input, guess_word, letters_played, life_count, user_word_format):
 
     if player_input not in guess_word and player_input not in letters_played:
         life_count-=1
@@ -53,6 +80,5 @@ def game_loop(player_input, guess_word, letters_played, life_count, user_word_fo
             user_word_format[index] = guess_word[index]
     if player_input not in letters_played and player_input not in guess_word:
         letters_played.append(player_input)
-    player_input = '_'
 
-    return life_count
+    return life_count, letters_played
