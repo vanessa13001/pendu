@@ -1,0 +1,92 @@
+{
+    "florence": {
+        "win_streak": 3,
+        "wins": 4,
+        "losses": 1
+    },
+    "adeline": {
+        "win_streak": 6,
+        "wins": 8,
+        "losses": 2
+    },
+    "test": {
+        "win_streak": 0,
+        "wins": 1,
+        "losses": 3
+    },
+    "thibault": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "ryhad": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "baba": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "vanessa": {
+        "win_streak": 0,
+        "wins": 2,
+        "losses": 1
+    },
+    "jolyne": {
+        "win_streak": 2,
+        "wins": 4,
+        "losses": 1
+    },
+    "jolynecou": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "jo": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
+    },
+    "pomme": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "pome": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "pmme": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "omme": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "apple": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "applet": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "applee": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "applze": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    }
+}
