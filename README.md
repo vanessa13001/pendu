@@ -22,11 +22,15 @@ The project is organized as follows:
 Hangman-Game/
 + Hangman-Game/
  * pygame_assets/
- * graphics/               # Contains images (backgrounds, icons, game elements)
-    * font/                # Contains fonts used for text
-    * sfx/                 # Contains sound effects
- * main.py                 # Game entry point
- * settings.py             # Configuration file containing resources and settings
+   * concept arts/        # Contains images (backgrounds, icons, game elements)
+   * font/                # Contains fonts used for text
+   * graphics/            # Contains images (icones, logos)  
+   * sfx/                 # Contains sound effects
+ * pygamne_module\
+   * _settings_py         # configuration centralizes resources like fonts, colors, sounds, and graphics
+   * display.py           # Manages Pygame setup, menus, and gameplay for Hangman.
+ * main.py                # Game entry point
+ 
 + README.md                
 
 ### Features  
