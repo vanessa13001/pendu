@@ -108,7 +108,7 @@ def game_set_up_menu(screen, user_input, game_mode, dialog, is_add_word=None, ne
         .get_rect(center=(440,415))
     if new_word != None:
         add_word_dialog_rect = settings.pixelplay_dialog_text(32,new_word+' a été ajouté').get_rect(center=(320,325))
-    if is_add_word:
+    if is_add_word == True:
         screen.blit(settings.pixelplay_dialog_text(32,new_word+' a ete ajoute'),add_word_dialog_rect)
     elif is_add_word == 'invalid':
         screen.blit(settings.pixelplay_dialog_text(32,new_word+' est invalide'),add_word_dialog_rect)
