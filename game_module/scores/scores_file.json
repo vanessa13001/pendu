@@ -37,7 +37,7 @@
     "jolyne": {
         "win_streak": 0,
         "wins": 10,
-        "losses": 5
+        "losses": 8
     },
     "jolynecou": {
         "win_streak": 1,
@@ -102,6 +102,11 @@
     "joly": {
         "win_streak": 0,
         "wins": 3,
+        "losses": 1
+    },
+    "jolyn": {
+        "win_streak": 0,
+        "wins": 0,
         "losses": 1
     }
 }
