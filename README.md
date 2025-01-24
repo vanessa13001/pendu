@@ -34,7 +34,7 @@ The game offers several features:
 
 + **Main Menu**:A menu with options to start a new game, view scores, or quit the game.
 + **Hangman Game**:The player has to guess a word by entering letters, with a limited number of lives before the character is hanged.
-+ **Scores**: Ability to view and delete player scores.
++ **Scores**: The player is able to view or delete all scores saved.
 + **Background Music**:Background music for both the main menu and during gameplay.
 + **Visual Effects**: Backgrounds, hanging character, dialogues, and other graphical elements to make the game more interactive.
 
@@ -47,9 +47,11 @@ The game offers several features:
      
 3. **Hangman Game**
    During the game, the player must guess a word by suggesting letters. Each wrong guess results in the hanging character moving forward until the player runs out of lives      or successfully guesses the word.  
-   The background and the hanging character change based on the number of remaining lives.  
+   The background and the hanging character change based on the number of remaining lives.
+   If the player lose, the secret word will be revealed. 
+   In order to save the score,  you need to press enter key.
 5. **Score**
-   The player can view scores, delete a player, or reset the scores from the score menu.
+   The player can view scores or reset the scores from the score menu.
 
 ***  
    
@@ -133,10 +135,10 @@ python main.py
 
 ### Contributing  
 This project was made by:  
-+ Vanessa Sabatier
-+ Jolyne Mangeot
-+ Adeline Patenne
-+ Florence Navet
++ [Vanessa Sabatier](https://github.com/vanessa13001)
++ [Jolyne Mangeot](https://github.com/jolyne-mangeot)
++ [Adeline Patenne](https://github.com/AdelinePat/) 
++ [Florence Navet](https://github.com/florence-navet)
 
 ### Licence  
 This project is licensed under the MIT License.
