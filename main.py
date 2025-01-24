@@ -46,6 +46,9 @@ def main():
                             off()
                             return
                         if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_ESCAPE:
+                                off()
+                                return
                             if event.key == pygame.K_RETURN:
                                 game_menu = "set_up_menu"
                         if start_button_rect.collidepoint(mouse_position):
@@ -123,11 +126,13 @@ def main():
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 game_mode = 1
                         if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_ESCAPE:
+                                game_menu = "main_menu"
                             if event.key == pygame.K_RETURN and username_input != '':
                                 player = username_input
                                 life_count = 7
                                 letters_played = []
-                                guess_word, user_word_format = game_methods.launch_game()
+                                guess_word, user_word_format = game_methods.launch_game(game_mode)
                                 pygame_display.pygame_mixer('game_soundtrack')
                                 game_menu = "game_on"
                             elif event.key == pygame.K_BACKSPACE and username_input != '':
