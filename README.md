@@ -48,8 +48,23 @@ The game offers several features:
 3. **Hangman Game**
    During the game, the player must guess a word by suggesting letters. Each wrong guess results in the hanging character moving forward until the player runs out of lives      or successfully guesses the word.  
    The background and the hanging character change based on the number of remaining lives.  
-5. **SCore**
+5. **Score**
    The player can view scores, delete a player, or reset the scores from the score menu.
+   ```  
+   setting.py  
+   ```  
+   The ```settings.py``` file contains resources and configurations used in the game. Here's an overview of its contents:
+   1. **Colors**
+      The colors used in the game are defined as RGBA tuples. Here are some examples:  
+      color = {  
+    'middle_gray' : (71,65,53,255),  
+    'dark_gray' : (42,38,31,255),  
+    'light_gray' : (119,115,119,255),  
+    'dark_red' : (192,0,0,255),  
+    'white' : (255,255,255,255),*  
+}  
+
+   
    
 
 
