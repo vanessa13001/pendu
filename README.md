@@ -15,6 +15,10 @@ pip install pygame
 ```  
 ***  
 
+# Projet Structure  
+
+The project is organized as follows:  
+
 Hangman-Game/
 + Hangman-Game/
  * pygame_assets/
