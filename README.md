@@ -17,14 +17,14 @@ pip install pygame
 
 # Projec Structure  
 Hangman-Game/
-│
 ├── pygame_assets/
-│   ├── graphics/            # Contains images (backgrounds, icons, game elements)  
-│   ├── font/                # Contains fonts used for text  
-│   └── sfx/                 # Contains sound effects  
-│  
-├── main.py                  # Game entry point  
-├── settings.py              # Configuration file containing resources and settings  
-└── README.md                # This file  
+│   ├── graphics/          # Contains images (backgrounds, icons, game elements)
+│   ├── font/              # Contains fonts used for text
+│   └── sfx/               # Contains sound effects
+├── main.py                # Game entry point
+├── settings.py            # Configuration file containing resources and settings
+└── README.md              # This file
+
+
   
 
