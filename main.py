@@ -124,9 +124,9 @@ def main():
                                 game_menu = "main_menu"
                             if event.key == pygame.K_RETURN and username_input != '':
                                 player = username_input
-                                life_count = 7
                                 player_input = '_'
                                 letters_played = []
+                                life_count = 7
                                 guess_word, user_word_format = game_methods.launch_game(game_mode)
                                 pygame_display.pygame_mixer('game_soundtrack')         
                                 game_menu = "game_on"
@@ -156,7 +156,7 @@ def main():
                                 pygame_display.pygame_mixer('main_menu_soundtrack')
                                 game_menu = "main_menu"
                             elif event.key == pygame.K_RETURN and player_input != '_':
-                                game_methods.game_loop(player_input, guess_word, letters_played, life_count, user_word_format)
+                                life_count = game_methods.game_loop(player_input, guess_word, letters_played, life_count, user_word_format)
                             elif event.key == pygame.K_BACKSPACE:
                                 player_input = '_'
                             else:
