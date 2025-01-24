@@ -4,7 +4,6 @@ import os
     Florence functions
 '''
 def player_id(player, scores):
-    player = str(player)
     if player not in scores:
         scores[player] = {"win_streak": 0, "wins": 0, "losses": 0}
         save_scores(scores,'game_module/scores/scores_file.json')

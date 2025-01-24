@@ -15,12 +15,9 @@ def pygame_mixer(music_name):
 def main_menu(screen):
     screen.blit(graphics['main_background_clouds'],(0,0))
     screen.blit(graphics['main_middleground_village'],(0,0))
-    main_title_shadow_rect = settings.pixeled_dialog_text(112,'Le Pendu').get_rect()
-    main_title_shadow_rect.center = (640//1.99, 480//3.19)
-    main_title_rect = settings.pixeled_dialog_text(112,'Le Pendu').get_rect()
-    main_title_rect.center = (640//2, 480//3.2)
+    main_title_rect = settings.pixeled_dialog_text(112,'Le Pendu').get_rect(center=(640//2, 480//3.2))
     screen.blit(settings.pixeled_dialog_text\
-                (112,'Le Pendu',color['dark_gray']), main_title_shadow_rect)
+                (112,'Le Pendu',color['dark_gray']), (main_title_rect[0]+2,main_title_rect[1]+2))
     screen.blit(settings.pixeled_dialog_text\
                 (112,'Le Pendu',color['dark_red']), main_title_rect)
 def main_menu_button(screen, button_id, button_y, hovered = False):
@@ -64,11 +61,11 @@ def player_scores(screen,players_id,scores, page):
     try:
         for player_id in range(page*6, page*6+6):
             player_infos = list(scores[players_id[player_id]].keys())
-            player_infos_print =('Win streak : ', 'Victoires : ', 'Défaites : ', 30,60,90)
+            player_infos_print =('Karma : ', 'Victoires : ', 'Défaites : ', 30,60,90)
             player_name_rect = settings.pixeled_dialog_text(36,players_id[player_id],color['dark_red']).get_rect()
             player_name_rect.center = scores_coords[player_id-page*6]
-            screen.blit(settings.pixeled_dialog_text(36,players_id[player_id],color['dark_gray']),(player_name_rect[0]+1,player_name_rect[1]+1))
-            screen.blit(settings.pixeled_dialog_text(36,players_id[player_id],color['dark_red']),player_name_rect)
+            screen.blit(settings.pixeled_dialog_text(36,players_id[player_id].capitalize(),color['dark_gray']),(player_name_rect[0]+1,player_name_rect[1]+1))
+            screen.blit(settings.pixeled_dialog_text(36,players_id[player_id].capitalize(),color['dark_red']),player_name_rect)
             for info in range(len(player_infos)):
                 player_info_rect = settings.pixelplay_dialog_text(28,player_infos_print[info]+\
                     str(scores[players_id[player_id]][player_infos[info]])).get_rect()

@@ -8,6 +8,7 @@ def launch_game():
 
 def update_scores(life_count, user_word_format, player):
     scores = load_scores('game_module/scores/scores_file.json')
+    player = str(player).lower()
     player_id(player, scores)
     if life_count == 0:
         scores[player]['losses'] +=1
