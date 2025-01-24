@@ -1,12 +1,12 @@
 {
     "florence": {
-        "points": 3,
-        "victoires": 4,
+        "points": 4,
+        "victoires": 5,
         "defaites": 1
     },
     "adeline": {
-        "points": 5,
-        "victoires": 7,
+        "points": 6,
+        "victoires": 8,
         "defaites": 2
     },
     "test": {
