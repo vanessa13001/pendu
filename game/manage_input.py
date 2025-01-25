@@ -65,21 +65,22 @@ def input_expression(game_mode, easy_button_rect, hard_button_rect, mouse_positi
 
 
 """
-input_letter : Processes player input during the game to handle guesses or control actions.
+input_letter : Processes player input during the game.
 
 Args:
     player (str): Player's name.
-    player_input (str): Current input letter from the player.
-    guess_word (list): The word to guess as a list of characters.
-    letters_played (list): List of already played letters.
-    life_count (int): Remaining lives for the player.
-    user_word_format (list): Current state of the guessed word with revealed letters.
+    player_input (str): Current letter input.
+    guess_word (list[str]): Word to guess as a list of characters.
+    letters_played (list[str]): List of already guessed letters.
+    life_count (int): Remaining lives.
+    user_word_format (list[str]): Current guessed word state.
 
 Returns:
-    tuple: Updated life count, player input, letters played, and a status string:
-    - 'quit' if the user exits the game.
-    - True if the game should proceed to the next state (e.g., word guessed or out of lives).
-    - '' if no significant action is taken.
+    tuple: (game_mode, user_input, status):
+        - 'quit': User exited.
+        - '': No action taken.
+        - True: Input confirmed
+
 """
 
 
