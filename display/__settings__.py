@@ -6,6 +6,9 @@ graphics_directory = 'assets/graphics/'
 font_directory = 'assets/font/'
 sfx_directory = 'assets/sfx/'
 
+PIXELPLAY_FONT = "pixelplay.ttf"
+PIXELED_FONT = "Pixeled English Font.ttf"
+
 color = {
     'middle_gray' : (71,65,53,255),
     'dark_gray' : (42,38,31,255),
@@ -43,17 +46,16 @@ graphics = {
     'game_middleground_moon' : pygame.image.load(graphics_directory+'game_mg_moon.png'),
 }
 
-def pixeled_font(font_size):
-    return pygame.font.Font(font_directory+'Pixeled English Font.ttf', int(font_size))
-
-def pixelplay_font(font_size):
-    return pygame.font.Font(font_directory+'pixelplay.ttf', int(font_size))
-
-def pixeled_dialog_text(font_size, dialog='', color='white'):
-    return pixeled_font(int(font_size)).render(dialog, True, color)
-
-def pixelplay_dialog_text(font_size, dialog='', color='white'):
-    return pixelplay_font(int(font_size)).render(dialog, True, color)
+def render_dialog_text(font_size, font_name=PIXELED_FONT, dialog='', color='white'):
+    try:
+        if font_name in [PIXELED_FONT, PIXELPLAY_FONT]:
+            font = pygame.font.Font(font_directory+font_name, int(font_size))
+            return font.render(dialog, True, color)
+        else:
+            raise Exception()
+    except Exception:
+            font = pygame.font.Font(font_directory+PIXELPLAY_FONT, int(font_size))
+            return font.render(dialog, True, color)       
 
 def main_arrows(left_right, hovered=False):
     arrows_sprites_list = (
