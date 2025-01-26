@@ -108,5 +108,10 @@
         "win_streak": 0,
         "wins": 0,
         "losses": 1
+    },
+    "jojo": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
     }
 }
