@@ -3,37 +3,31 @@ import display.display as pygame_display
 import game.manage_input as manage_input
 import game.scores.manage_scores as manage_scores
 import game.words.manage_words as manage_words
-import game.display as terminal_display
+from game.__settings__ import off
 from display.__settings__ import hovered
 '''
-main
+    main
 '''
-def off():
-    terminal_display.clear_print()
-    pygame.quit()
-    exit()
-
 def main():
     screen, clock = pygame_display.pygame_init()
     try:
-
+        #establish settings variables for game difficulty and inputs
         game_mode = 0
         user_input = ''
         player=''
 
         pygame_display.pygame_mixer('main_menu_soundtrack')
         game_menu = "main_menu"
-
         while True:
             mouse_position = pygame.mouse.get_pos()
-            
             match game_menu:
+                # main_menu covers enter and escape input to enter or quit the game,
+                # and buttons to acces other menus
                 case "main_menu":
                     pygame_display.main_menu(screen)
                     menu_buttons = pygame_display.main_menu_buttons(screen,\
                         hovered["start_button"], hovered["score_button"],\
                         hovered["words_button"], hovered["quit_button"])
-
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             off()
@@ -78,7 +72,11 @@ def main():
                                 off()
                                 return
                         else: hovered["quit_button"] = False
-                case "scores_menu":        
+
+                case "scores_menu":
+                    # scores menu displays all players names and their data,
+                    # handling multiple pages if needed with arrows buttons and inputs,
+                    # also displaying a button to reset said data and to leave the menu
                     pages = int(pygame_display.get_scores_menu_pages())
                     if pages == 0:
                         pygame_display.scores_menu_blank(screen)
@@ -91,6 +89,7 @@ def main():
                         if event.type == pygame.QUIT:
                             off()
                             return
+
                         if event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_ESCAPE:
                                 game_menu = "main_menu"
@@ -106,28 +105,35 @@ def main():
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 game_menu = "main_menu"
                         else: hovered["back_button"] = False
+
                         if pages!= 0:
                             if reset_button_rect.collidepoint(mouse_position):
                                 hovered["reset_button"] = True
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     manage_scores.erase_all_record()
                             else: hovered["reset_button"] = False
+
                             if left_arrow_rect.collidepoint(mouse_position):
                                 hovered["left"] = True
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     if page > 0:
                                         page-=1
                             else: hovered["left"] = False
+
                             if right_arrow_rect.collidepoint(mouse_position):
                                 hovered["right"] = True
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     if page < pages-1:
                                         page+=1
                             else: hovered["right"] = False
+
                 case "add_word_menu":
+                    # add word menu is straightfoward in it handling the input of the user
+                    # to add a word to either list of playable words with buttons and
+                    # pertinent response messages upon filtering the input
                     pygame_display.main_menu(screen)
-                    easy_button_rect, hard_button_rect = \
-                        pygame_display.game_set_up_menu(screen, user_input, game_mode, 'Votre mot :', is_add_word, new_word)
+                    easy_button_rect, hard_button_rect = pygame_display.game_set_up_menu\
+                        (screen, user_input, game_mode, 'Votre mot :', is_add_word, new_word)
                     game_mode, user_input, correct_input = manage_input.input_expression\
                         (game_mode, easy_button_rect, hard_button_rect, mouse_position, user_input,16)
                     match correct_input:
@@ -137,13 +143,19 @@ def main():
                             user_input = ''
                         case False:
                             user_input = ''
+                            correct_input = ''
                             game_menu = "main_menu"
                         case 'quit':
                             off()
                             return
+
                 case "set_up_menu":
+                    # set up menu handles the players settings for the game,
+                    # their name and the difficulty they wish to play on,
+                    # before initiating the game's variables
                     pygame_display.main_menu(screen)
-                    easy_button_rect, hard_button_rect = pygame_display.game_set_up_menu(screen, user_input, game_mode, 'Votre nom :')
+                    easy_button_rect, hard_button_rect = pygame_display.game_set_up_menu\
+                        (screen, user_input, game_mode, 'Votre nom :')
                     game_mode, user_input, correct_input = manage_input.input_expression\
                         (game_mode,easy_button_rect, hard_button_rect, mouse_position, user_input,9)
                     match correct_input:
@@ -164,14 +176,22 @@ def main():
                         case 'quit':
                             off()
                             return
+
                 case "game_on":
+                    # game on displays the game's interface with a dialog box showing all
+                    # litteral informations such as the guess word, the letters played and
+                    # the user input. when won or lost, a final message is displayed
                     pygame_display.game_environment(screen, life_count, user_word_format)
                     if life_count == 0:
                         pygame_display.end_message(screen,0,''.join(guess_word))
+                    
                     elif '_' not in user_word_format:
                         pygame_display.end_message(screen,1,''.join(guess_word))
+                    
                     else: pygame_display.game_interface(screen, ' '.join(user_word_format), player_input, letters_played)
-                    life_count, player_input, letters_played, correct_input = manage_input.input_letter(player, player_input, guess_word, letters_played, life_count, user_word_format)
+
+                    life_count, player_input, letters_played, correct_input = manage_input.input_letter\
+                        (player, player_input, guess_word, letters_played, life_count, user_word_format)
                     match correct_input:
                         case True:
                             pygame_display.pygame_mixer('main_menu_soundtrack')
@@ -183,7 +203,9 @@ def main():
                 case _:
                     off()
                     return
-                
+            
+            # the program goes through each case 45 times per second to update the screen
+            # with new informations
             pygame.display.update()
             clock.tick(45)
 
