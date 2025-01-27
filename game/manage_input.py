@@ -2,8 +2,7 @@ import pygame
 import game.__settings__ as settings
 import game.words.manage_words as manage_words
 from game.scores.manage_scores import update_scores
-
-"""
+'''
 input_expression : Handles user input for selecting game mode or typing text in the input field.
 
 Args:
@@ -19,9 +18,7 @@ Args:
     - 'quit' if the user exits the game.
     - '' if no significant action is taken.
      - True if the input is confirmed (e.g., Enter key is pressed).
-"""
-
-
+'''
 def input_expression(game_mode, easy_button_rect, hard_button_rect, mouse_position, user_input, max_value):
 
     for event in pygame.event.get():
@@ -62,9 +59,7 @@ def input_expression(game_mode, easy_button_rect, hard_button_rect, mouse_positi
 
     # Default return if no specific action occurred
     return game_mode, user_input, ''
-
-
-"""
+'''
 input_letter : Processes player input during the game.
 
 Args:
@@ -81,9 +76,7 @@ Returns:
         - '': No action taken.
         - True: Input confirmed
 
-"""
-
-
+'''
 def input_letter(player, player_input, guess_word, letters_played, life_count, user_word_format):
 
     for event in pygame.event.get():

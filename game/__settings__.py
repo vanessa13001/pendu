@@ -8,6 +8,9 @@ SCORE_PATH = "./game/scores/scores_file.json"
 EASY_WORDS_PATH = "./game/words/words_easy.txt"
 HARD_WORDS_PATH = "./game/words/words_hard.txt"
 
+'''
+    initialize pygame window with custom resolution, title and icon
+'''
 def game_init():
     pygame.init()
     screen = pygame.display.set_mode((640,480))
