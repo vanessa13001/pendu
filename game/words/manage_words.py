@@ -9,6 +9,10 @@ def game_words(game_mode):
     return guess_word, user_word_format
 
 
+'''
+    check is letter input by player is in guess word. If it's not, life_count decrement.
+    if it is, the letter corresponding is replaced in user_word
+'''
 def check_letter_loop(player_input, guess_word, letters_played, life_count, user_word_format):
     if player_input not in guess_word and player_input not in letters_played:
         life_count-=1
@@ -20,6 +24,10 @@ def check_letter_loop(player_input, guess_word, letters_played, life_count, user
 
     return life_count, letters_played
 
+'''
+    allow player to add word depending the word list (easy or hard).
+    if input is valid, append word in the right file
+'''
 def add_word(new_word, game_mode):
     new_word = str(new_word).strip().lower()
 
