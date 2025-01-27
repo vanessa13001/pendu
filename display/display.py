@@ -174,10 +174,10 @@ def game_interface(screen, guess_word, player_input, letters_played):
         .get_rect(bottomleft = (322,425))
     player_input_rect = settings.render_dialog_text(42, PIXELPLAY_FONT)\
         .get_rect(bottomleft = (515,430))
-    screen.blit(settings.pixelplay_dialog_text(30, guess_word), guess_word_rect)
-    screen.blit(settings.pixeled_dialog_text(30,'votre lettre :'),dialog_input_rect)
-    screen.blit(settings.pixelplay_dialog_text(30,' '.join(letters_played),color['dark_red']),letters_played_rect)
-    screen.blit(settings.pixelplay_dialog_text(42,player_input), player_input_rect)
+    screen.blit(settings.render_dialog_text(30,PIXELPLAY_FONT,guess_word), guess_word_rect)
+    screen.blit(settings.render_dialog_text(30,PIXELED_FONT,'votre lettre :'),dialog_input_rect)
+    screen.blit(settings.render_dialog_text(30,PIXELPLAY_FONT,' '.join(letters_played),color['dark_red']),letters_played_rect)
+    screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,player_input), player_input_rect)
 '''
     display a game end message depending on the victory or loss of the player
 '''
