@@ -2,12 +2,10 @@ from unidecode import unidecode
 import secrets
 from ..__settings__ import EASY_WORDS_PATH, HARD_WORDS_PATH
 
-
 def game_words(game_mode):
     guess_word = get_guess_word(game_mode)
     user_word_format = display_user_word(guess_word)
     return guess_word, user_word_format
-
 
 '''
     check is letter input by player is in guess word. If it's not, life_count decrement.

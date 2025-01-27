@@ -5,9 +5,9 @@
         "losses": 1
     },
     "adeline": {
-        "win_streak": 6,
-        "wins": 8,
-        "losses": 2
+        "win_streak": 0,
+        "wins": 9,
+        "losses": 4
     },
     "test": {
         "win_streak": 0,
