@@ -39,7 +39,7 @@
         "wins": 10,
         "losses": 8
     },
-    "jolynecou": {
+    "Saya": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
@@ -54,17 +54,17 @@
         "wins": 1,
         "losses": 0
     },
-    "pome": {
+    "orange": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
     },
-    "pmme": {
+    "banane": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
     },
-    "omme": {
+    "poire": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
@@ -74,17 +74,17 @@
         "wins": 1,
         "losses": 0
     },
-    "applet": {
+    "Hamlet": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
     },
-    "applee": {
+    "Aqua": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
     },
-    "applze": {
+    "Konosuba": {
         "win_streak": 1,
         "wins": 1,
         "losses": 0
@@ -94,7 +94,7 @@
         "wins": 2,
         "losses": 1
     },
-    "hallotest": {
+    "Shadow": {
         "win_streak": 0,
         "wins": 0,
         "losses": 1
@@ -104,7 +104,7 @@
         "wins": 3,
         "losses": 1
     },
-    "jolyn": {
+    "Anna": {
         "win_streak": 0,
         "wins": 0,
         "losses": 1
@@ -112,6 +112,11 @@
     "jojo": {
         "win_streak": 0,
         "wins": 0,
+        "losses": 1
+    },
+    "Kevin": {
+        "win_streak": 8,
+        "wins": 8,
         "losses": 1
     }
 }
