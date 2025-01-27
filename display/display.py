@@ -59,7 +59,7 @@ def scores_menu_blank(screen):
     screen.blit(graphics['main_middleground_village'],(0,0))
     blank_dialog_rect = settings.render_dialog_text(32,PIXELED_FONT,'Aucun score enregistre')\
         .get_rect(center = (320,240))
-    screen.blit(settings.pixeled_dialog_text(32,'Aucun score enregistre'),blank_dialog_rect)
+    screen.blit(settings.render_dialog_text(32,PIXELED_FONT,'Aucun score enregistre'),blank_dialog_rect)
 ''' 
     display the scores menu with a title, backgrounds and buttons that are returned
 '''

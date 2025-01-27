@@ -96,3 +96,5 @@ lapin
 pain
 saya
 chat
+chaton
+farine
