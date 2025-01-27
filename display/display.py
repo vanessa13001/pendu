@@ -1,8 +1,7 @@
-import pygame_module.__settings__ as settings
-import game_module.scores.manage_scores as scores_display
-from pygame_module.__settings__ import color, graphics, sfx
+import display.__settings__ as settings
+import game.scores.manage_scores as scores_display
+from display.__settings__ import color, graphics, sfx, PIXELED_FONT, PIXELPLAY_FONT
 import pygame
-
 
 def pygame_init():
     pygame.init()
@@ -11,7 +10,6 @@ def pygame_init():
     pygame.display.set_icon(graphics['icon'])
     clock = pygame.time.Clock()
     return screen, clock
-
 
 def pygame_mixer(music_name):
     pygame.mixer.music.load(sfx[music_name])
@@ -23,11 +21,11 @@ def pygame_mixer(music_name):
         pygame.Rect: Rectangle correspondant à la zone du bouton.'''
 
 def menu_button(screen, button_id, button_x, button_y, font_size=48, hovered = False):
-    button_rect = settings.pixeled_dialog_text(font_size,button_id)\
+    button_rect = settings.render_dialog_text(font_size,PIXELED_FONT,button_id)\
         .get_rect(bottomleft=(button_x,button_y))
     if hovered:
-        screen.blit(settings.pixeled_dialog_text(font_size,button_id,color['dark_red']), button_rect)
-    else: screen.blit(settings.pixeled_dialog_text(font_size,button_id,color['white']), button_rect)
+        screen.blit(settings.render_dialog_text(font_size,PIXELED_FONT,button_id,color['dark_red']), button_rect)
+    else: screen.blit(settings.render_dialog_text(font_size,PIXELED_FONT,button_id,color['white']), button_rect)
     return button_rect
 
 
@@ -38,7 +36,7 @@ def menu_button(screen, button_id, button_x, button_y, font_size=48, hovered = F
 def main_menu(screen):
     screen.blit(graphics['main_background_clouds'],(0,0))
     screen.blit(graphics['main_middleground_village'],(0,0))
-    main_title_rect = settings.pixeled_dialog_text(112,'Le Pendu')\
+    main_title_rect = settings.render_dialog_text(112,PIXELED_FONT,'Le Pendu')\
         .get_rect(center=(640//2, 480//3.2))
     screen.blit(settings.pixeled_dialog_text\
                 (112,'Le Pendu',color['dark_gray']), (main_title_rect[0]+2,main_title_rect[1]+2))
@@ -86,7 +84,7 @@ def get_scores_menu_pages():
 def scores_menu_blank(screen):
     screen.blit(graphics['main_background_clouds'],(0,0))
     screen.blit(graphics['main_middleground_village'],(0,0))
-    blank_dialog_rect = settings.pixeled_dialog_text(32,'Aucun score enregistre')\
+    blank_dialog_rect = settings.render_dialog_text(32,PIXELED_FONT,'Aucun score enregistre')\
         .get_rect(center = (320,240))
     screen.blit(settings.pixeled_dialog_text(32,'Aucun score enregistre'),blank_dialog_rect)
 
@@ -107,9 +105,9 @@ def scores_menu_blank(screen):
 def scores_menu(screen,page,pages,left_hovered, right_hovered):
     screen.blit(graphics['main_background_clouds'],(0,0))
     screen.blit(graphics['main_middleground_village'],(0,0))
-    scores_menu_title_rect = settings.pixeled_dialog_text(32, 'Menu des scores')\
+    scores_menu_title_rect = settings.render_dialog_text(32,PIXELED_FONT,'Menu des scores')\
         .get_rect(center = (320,60))
-    screen.blit(settings.pixeled_dialog_text(32, 'Menu des scores'),scores_menu_title_rect)
+    screen.blit(settings.render_dialog_text(32,PIXELED_FONT,'Menu des scores'),scores_menu_title_rect)
     scores = scores_display.load_scores()
     players_id = list(scores.keys())
     player_scores(screen,players_id,scores, page)
@@ -135,14 +133,14 @@ def player_scores(screen,players_id,scores, page):
         for player_id in range(page*6, page*6+6):
             player_infos = list(scores[players_id[player_id]].keys())
             player_infos_print =('Karma : ', 'Victoires : ', 'Défaites : ', 30,60,90)
-            player_name_shadow = settings.pixeled_dialog_text(36,players_id[player_id].capitalize(),color['dark_gray'])
-            player_name = settings.pixeled_dialog_text(36,players_id[player_id].capitalize(),color['dark_red'])
+            player_name_shadow = settings.render_dialog_text(36,PIXELED_FONT,players_id[player_id].capitalize(),color['dark_gray'])
+            player_name = settings.render_dialog_text(36,PIXELED_FONT,players_id[player_id].capitalize(),color['dark_red'])
             player_name_rect = player_name\
                 .get_rect(center=scores_coords[player_id-page*6])
             screen.blit(player_name_shadow,(player_name_rect[0]+1,player_name_rect[1]+1))
             screen.blit(player_name,player_name_rect)
             for info in range(len(player_infos)):
-                player_info = settings.pixelplay_dialog_text(28,player_infos_print[info]+\
+                player_info = settings.render_dialog_text(28, PIXELPLAY_FONT, player_infos_print[info]+\
                     str(scores[players_id[player_id]][player_infos[info]]))
                 player_info_rect = player_info\
                     .get_rect(center = (scores_coords[player_id-page*6][0],\
@@ -185,32 +183,32 @@ def scores_menu_arrows(screen, pages, page, left_hovered, right_hovered):
         tuple: rectangles des boutons "facile" et "difficile".'''
 def game_set_up_menu(screen, user_input, game_mode, dialog, is_add_word=None, new_word=None):
     screen.blit(graphics['main_dialog_box'],(0,-20))
-    dialog_input_rect = settings.pixeled_dialog_text(32,dialog)\
+    dialog_input_rect = settings.render_dialog_text(32,PIXELED_FONT,dialog)\
         .get_rect(bottomleft = (120,300))
-    user_input_rect = settings.pixeled_dialog_text(32,user_input)\
+    user_input_rect = settings.render_dialog_text(32,PIXELED_FONT,user_input)\
         .get_rect(bottomleft = (310,300))
-    easy_button_rect = settings.pixelplay_dialog_text(42,'Facile')\
+    easy_button_rect = settings.render_dialog_text(42,PIXELPLAY_FONT,'Facile')\
         .get_rect(center=(200,415))
-    hard_button_rect = settings.pixelplay_dialog_text(42,'Difficile')\
+    hard_button_rect = settings.render_dialog_text(42,PIXELPLAY_FONT,'Difficile')\
         .get_rect(center=(440,415))
     if new_word != None:
-        add_word_dialog_rect = settings.pixelplay_dialog_text(32,new_word+' a été ajouté').get_rect(center=(320,325))
+        add_word_dialog_rect = settings.render_dialog_text(32,PIXELPLAY_FONT,new_word+' a été ajouté').get_rect(center=(320,325))
     if is_add_word == True:
-        screen.blit(settings.pixelplay_dialog_text(32,new_word+' a ete ajoute'),add_word_dialog_rect)
+        screen.blit(settings.render_dialog_text(32,PIXELPLAY_FONT,new_word+' a ete ajoute'),add_word_dialog_rect)
     elif is_add_word == 'invalid':
-        screen.blit(settings.pixelplay_dialog_text(32,new_word+' est invalide'),add_word_dialog_rect)
+        screen.blit(settings.render_dialog_text(32,PIXELPLAY_FONT,new_word+' est invalide'),add_word_dialog_rect)
     elif is_add_word == False:
-        screen.blit(settings.pixelplay_dialog_text(32,new_word+' existe deja'),add_word_dialog_rect)
+        screen.blit(settings.render_dialog_text(32,PIXELPLAY_FONT,new_word+' existe deja'),add_word_dialog_rect)
     if game_mode == 0:
-        screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['white']),hard_button_rect)
-        screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['dark_gray']), (easy_button_rect[0]-2, easy_button_rect[1]-2))
-        screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['dark_red']), easy_button_rect)
+        screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,'Difficile', color['white']),hard_button_rect)
+        screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,'Facile', color['dark_gray']), (easy_button_rect[0]-2, easy_button_rect[1]-2))
+        screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,'Facile', color['dark_red']), easy_button_rect)
     if game_mode == 1:
-        screen.blit(settings.pixelplay_dialog_text(42,'Facile', color['white']),easy_button_rect)
-        screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['dark_gray']), (hard_button_rect[0]-2, hard_button_rect[1]-2))
-        screen.blit(settings.pixelplay_dialog_text(42,'Difficile', color['dark_red']), hard_button_rect)
-    screen.blit(settings.pixeled_dialog_text(32,dialog), dialog_input_rect)
-    screen.blit(settings.pixeled_dialog_text(32,user_input),user_input_rect)
+        screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,'Facile', color['white']),easy_button_rect)
+        screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,'Difficile', color['dark_gray']), (hard_button_rect[0]-2, hard_button_rect[1]-2))
+        screen.blit(settings.render_dialog_text(42,PIXELPLAY_FONT,'Difficile', color['dark_red']), hard_button_rect)
+    screen.blit(settings.render_dialog_text(32,PIXELED_FONT,dialog), dialog_input_rect)
+    screen.blit(settings.render_dialog_text(32,PIXELED_FONT,user_input),user_input_rect)
     return easy_button_rect, hard_button_rect
 
 
@@ -236,13 +234,13 @@ def game_environment(screen,life_count, user_word_format):
 
 def game_interface(screen, guess_word, player_input, letters_played):
     screen.blit(graphics['main_dialog_box'],(0,60))
-    guess_word_rect = settings.pixelplay_dialog_text(30)\
+    guess_word_rect = settings.render_dialog_text(30, PIXELPLAY_FONT)\
         .get_rect(bottomleft = (120,380))
-    letters_played_rect = settings.pixelplay_dialog_text(30)\
+    letters_played_rect = settings.render_dialog_text(30, PIXELPLAY_FONT)\
         .get_rect(bottomleft = (120,425))
-    dialog_input_rect = settings.pixeled_dialog_text(30)\
+    dialog_input_rect = settings.render_dialog_text(30)\
         .get_rect(bottomleft = (322,425))
-    player_input_rect = settings.pixelplay_dialog_text(42)\
+    player_input_rect = settings.render_dialog_text(42, PIXELPLAY_FONT)\
         .get_rect(bottomleft = (515,430))
     screen.blit(settings.pixelplay_dialog_text(30, guess_word), guess_word_rect)
     screen.blit(settings.pixeled_dialog_text(30,'votre lettre :'),dialog_input_rect)
@@ -263,9 +261,9 @@ def end_message(screen, win_or_lose, guess_word):
         graphics['game_dialog_lost'],
         graphics['game_dialog_won'])
     screen.blit(end_message_list[win_or_lose],(0,-25))
-    end_dialog_rect = settings.pixeled_dialog_text(36)\
+    end_dialog_rect = settings.render_dialog_text(36)\
         .get_rect(bottomleft = (300,323))
-    guess_word_rect = settings.pixelplay_dialog_text(36, guess_word)\
+    guess_word_rect = settings.render_dialog_text(36,PIXELPLAY_FONT, guess_word)\
         .get_rect(center = (640//2,390))
-    screen.blit(settings.pixeled_dialog_text(36,'Ent. pour continuer'), end_dialog_rect)
-    screen.blit(settings.pixelplay_dialog_text(36, guess_word), guess_word_rect)
+    screen.blit(settings.render_dialog_text(36,'Ent. pour continuer'), end_dialog_rect)
+    screen.blit(settings.render_dialog_text(36,PIXELPLAY_FONT, guess_word), guess_word_rect)

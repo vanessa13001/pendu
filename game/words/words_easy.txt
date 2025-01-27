@@ -93,3 +93,6 @@ banane
 fiji
 lapinou
 lapin
+pain
+saya
+chat

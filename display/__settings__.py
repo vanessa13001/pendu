@@ -2,6 +2,13 @@ import pygame
 pygame.font.init()
 pygame.mixer.init()
 
+graphics_directory = 'assets/graphics/'
+font_directory = 'assets/font/'
+sfx_directory = 'assets/sfx/'
+
+PIXELPLAY_FONT = "pixelplay.ttf"
+PIXELED_FONT = "Pixeled English Font.ttf"
+
 color = {
     'middle_gray' : (71,65,53,255),
     'dark_gray' : (42,38,31,255),
@@ -9,22 +16,23 @@ color = {
     'dark_red' : (192,0,0,255),
     'white' : (255,255,255,255),
 }
-graphics_directory = 'pygame_assets/graphics/'
-font_directory = 'pygame_assets/font/'
-sfx_directory = 'pygame_assets/sfx/'
 
-def pixeled_font(font_size):
-    return pygame.font.Font(font_directory+'Pixeled English Font.ttf', int(font_size))
-def pixelplay_font(font_size):
-    return pygame.font.Font(font_directory+'pixelplay.ttf', int(font_size))
-def pixeled_dialog_text(font_size, dialog='', color='white'):
-    return pixeled_font(int(font_size)).render(dialog, True, color)
-def pixelplay_dialog_text(font_size, dialog='', color='white'):
-    return pixelplay_font(int(font_size)).render(dialog, True, color)
+hovered = {
+    "start_button" : False,
+    "score_button" : False,
+    "words_button" : False,
+    "quit_button" : False,
+    "reset_button" : False,
+    "back_button" : False,
+    "left" : False,
+    "right" : False
+}
+
 sfx = {
     'main_menu_soundtrack' : sfx_directory+'A Singular Perversion.mp3',
     'game_soundtrack' : sfx_directory+'Lightless Dawn.mp3',
 }
+
 graphics = {
     'icon' : pygame.image.load(graphics_directory+'icon.png'),
     'main_dialog_box' : pygame.image.load(graphics_directory+'main_fg_dialog.png'),
@@ -37,6 +45,18 @@ graphics = {
     'game_middleground_gallowstand_won' : pygame.image.load(graphics_directory+'game_mg_gallowstand_won.png'),
     'game_middleground_moon' : pygame.image.load(graphics_directory+'game_mg_moon.png'),
 }
+
+def render_dialog_text(font_size, font_name=PIXELED_FONT, dialog='', color='white'):
+    try:
+        if font_name in [PIXELED_FONT, PIXELPLAY_FONT]:
+            font = pygame.font.Font(font_directory+font_name, int(font_size))
+            return font.render(dialog, True, color)
+        else:
+            raise Exception()
+    except Exception:
+            font = pygame.font.Font(font_directory+PIXELPLAY_FONT, int(font_size))
+            return font.render(dialog, True, color)       
+
 def main_arrows(left_right, hovered=False):
     arrows_sprites_list = (
         graphics_directory+'main_fg_left_arrow_white.png',
@@ -47,6 +67,7 @@ def main_arrows(left_right, hovered=False):
     if hovered:
         return pygame.image.load(arrows_sprites_list[left_right+2])
     return pygame.image.load(arrows_sprites_list[left_right])
+
 def game_background(life_count):
     background_library = (
         graphics_directory+'game_bg_w6.png',
@@ -59,6 +80,7 @@ def game_background(life_count):
         graphics_directory+'game_bg_w0.png',
     )
     return pygame.image.load(background_library[life_count])
+
 def game_hangedman(life_count):
     hangedman_library = (
         graphics_directory+'game_mg_hang7.png',
