@@ -1,0 +1,122 @@
+{
+    "florence": {
+        "win_streak": 3,
+        "wins": 4,
+        "losses": 1
+    },
+    "adeline": {
+        "win_streak": 0,
+        "wins": 9,
+        "losses": 4
+    },
+    "test": {
+        "win_streak": 0,
+        "wins": 1,
+        "losses": 3
+    },
+    "thibault": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "ryhad": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "baba": {
+        "win_streak": 0,
+        "wins": 1,
+        "losses": 2
+    },
+    "vanessa": {
+        "win_streak": 0,
+        "wins": 2,
+        "losses": 1
+    },
+    "jolyne": {
+        "win_streak": 0,
+        "wins": 10,
+        "losses": 11
+    },
+    "Saya": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "jo": {
+        "win_streak": 2,
+        "wins": 2,
+        "losses": 1
+    },
+    "pomme": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "orange": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "banane": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "poire": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "apple": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "Hamlet": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "Aqua": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "Konosuba": {
+        "win_streak": 1,
+        "wins": 1,
+        "losses": 0
+    },
+    "hallo": {
+        "win_streak": 0,
+        "wins": 2,
+        "losses": 1
+    },
+    "Shadow": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
+    },
+    "joly": {
+        "win_streak": 0,
+        "wins": 3,
+        "losses": 1
+    },
+    "Anna": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
+    },
+    "jojo": {
+        "win_streak": 0,
+        "wins": 0,
+        "losses": 1
+    },
+    "Kevin": {
+        "win_streak": 8,
+        "wins": 8,
+        "losses": 1
+    }
+}
