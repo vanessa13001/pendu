@@ -150,23 +150,4 @@ This project is licensed under the MIT License.
 ```
 The contributors have been added in the **Contributors** section at the end of the README.
 You can now use this updated version for your project documentation in English!
-```  
-
-
-
-   
-
-
-      
-
-   
-   
-
-
-
-
-
-
-
-  
-
+```
