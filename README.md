@@ -1,4 +1,5 @@
 # Hangman Game - Pygame
+![preview main](main_preview.png)
 
 This project is an implementation of the classic **Hangman** game using the **Pygame** library. The goal of the game is to guess a word by suggesting letters, while avoiding having the character being hanged.
 
@@ -33,20 +34,21 @@ Hangman-Game/
  
 + README.md                
 
-### Features  
+### Features
+![preview game](game_preview.png)
 The game offers several features:  
 
-+ **Main Menu**:A menu with options to start a new game, view scores, or quit the game.
-+ **Hangman Game**:The player has to guess a word by entering letters, with a limited number of lives before the character is hanged.
++ **Main Menu**: A menu with options to start a new game, view scores, or quit the game.
++ **Hangman Game**: The player has to guess a word by entering letters, with a limited number of lives before the character is hanged.
 + **Scores**: The player is able to view or delete all scores saved.
-+ **Background Music**:Background music for both the main menu and during gameplay.
++ **Background Music**: Background music for both the main menu and during gameplay.
 + **Visual Effects**: Backgrounds, hanging character, dialogues, and other graphical elements to make the game more interactive.
 
 ## How it works 
 1. **Main Menu**
    When the game starts, a main menu appears with several buttons:
    + **Play**: Starts a new Hangman game.
-   + **Score**s: Displays the saved player scores.  
+   + **Scores**: Displays the saved player scores.  
    + **Quit**: Exits the game.
      
 3. **Hangman Game**
@@ -146,8 +148,3 @@ This project was made by:
 
 ### Licence  
 This project is licensed under the MIT License.
-
-```
-The contributors have been added in the **Contributors** section at the end of the README.
-You can now use this updated version for your project documentation in English!
-```
