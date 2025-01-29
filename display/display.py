@@ -190,5 +190,5 @@ def end_message(screen, win_or_lose, guess_word):
         .get_rect(bottomleft = (300,323))
     guess_word_rect = settings.render_dialog_text(36,PIXELPLAY_FONT, guess_word)\
         .get_rect(center = (640//2,390))
-    screen.blit(settings.render_dialog_text(36,'Ent. pour continuer'), end_dialog_rect)
+    screen.blit(settings.render_dialog_text(36,PIXELED_FONT, 'Ent. pour continuer'), end_dialog_rect)
     screen.blit(settings.render_dialog_text(36,PIXELPLAY_FONT, guess_word), guess_word_rect)
