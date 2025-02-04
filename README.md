@@ -133,7 +133,7 @@ The game offers several features:
 ## Running the game
 
 ### Start the game  
-To start the game, run the ```main.py``` file:  
+Download the game [here](https://github.com/vanessa13001/pendu/archive/refs/heads/main.zip), unzip and run the ```main.py``` file:  
 
 ```bash
 python main.py
